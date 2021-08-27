@@ -94,6 +94,27 @@
                 <form:input type="text" path="user.address"/>
             </td>
         </tr>
+        <tr>
+            <td>
+                Username:
+            </td>
+            <td>
+                <form:input path="user.username"/>
+            </td>
+            <td style="color: red">
+                <c:if test="${not empty errors}">
+                    ${errors}
+                </c:if>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Password:
+            </td>
+            <td>
+                <form:password path="user.password"/>
+            </td>
+        </tr>
     </table>
 
     <h1>Add a Schedule for the singer</h1>
