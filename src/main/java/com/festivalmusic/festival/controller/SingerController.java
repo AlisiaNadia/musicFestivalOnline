@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;;
 
-import javax.validation.Valid;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -44,7 +43,7 @@ public class SingerController {
     }
 
     @PostMapping("singer-registration")
-    public String addSingersRegistration(@Valid @ModelAttribute("singerRegistration") SingerRegistration singerRegistration ,
+    public String addSingersRegistration( @ModelAttribute("singerRegistration") SingerRegistration singerRegistration ,
                                          BindingResult result) {
 
         Stage stage = singerRegistration.getStage();

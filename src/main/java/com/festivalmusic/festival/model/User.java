@@ -41,6 +41,22 @@ public class User {
     @Column(name = "authority")
     private String roles;
 
+    public User(String lastName, String firstName, String email, String phone, String address,
+                String username, String password, String roles) {
+        this.lastName = lastName;
+        this.firstName = firstName;
+        this.email = email;
+        this.phone = phone;
+        this.address = address;
+        this.username = username;
+        this.password = password;
+        this.roles = roles;
+    }
+
+    public User() {
+
+    }
+
     public String getRoles() {
         return roles;
     }
