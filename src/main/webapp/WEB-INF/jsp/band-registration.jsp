@@ -7,6 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <html>
 <head>
     <title>Add Band</title>
@@ -37,7 +38,7 @@
             <a class="nav-link" href="singer-registration">Add singer</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="addBand">Add band</a>
+            <a class="nav-link" href="band-registration">Add band</a>
         </li>
         <li class="nav-item">
             <sec:authorize access="!isAuthenticated()">
@@ -56,7 +57,8 @@
     </ul>
 </nav>
 <body>
-<form:form modelAttribute="registration">
+<form:form modelAttribute="band-registration">
+    <h1>Add band and band members</h1>
     <table>
         <tr>
             <td>
@@ -66,7 +68,71 @@
                 <form:input path="name"/>
             </td>
         </tr>
-        </tr>
+        <c:forEach items="${usersList}" var="user">
+            <tr>
+                <td>
+                    Last name:
+                </td>
+                <td>
+                    <form:input type="text" path="user.lastName"/>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    First name:
+                </td>
+                <td>
+                    <form:input type="text" path="user.firstName"/>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Email:
+                </td>
+                <td>
+                    <form:input type="email" path="user.email"/>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Phone number:
+                </td>
+                <td>
+                    <form:input type="text" path="user.phone"/>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Address:
+                </td>
+                <td>
+                    <form:input type="text" path="user.address"/>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Username:
+                </td>
+                <td>
+                    <form:input path="user.username"/>
+                </td>
+                <td style="color: red">
+                    <c:if test="${not empty errors}">
+                        ${errors}
+                    </c:if>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Password:
+                </td>
+                <td>
+                    <form:password path="user.password"/>
+                </td>
+            </tr>
+        </c:forEach>
+        <button onclick="${usersList}">Add band member</button>
+    </table>
         <h1>Add a Schedule for the band</h1>
         <table>
             <tr>
@@ -100,12 +166,8 @@
                 </td>
             </tr>
         </table>
-        <tr>
-            <td>
-                <input type="submit" value="Add Registration">
-            </td>
-        </tr>
-    </table>
+
+    <input type="submit" value="Add Registration">
 </form:form>
 </body>
 </html>

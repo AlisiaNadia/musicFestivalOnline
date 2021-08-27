@@ -45,18 +45,16 @@ public class SingerController {
 
     @PostMapping("singer-registration")
     public String addSingersRegistration(@Valid @ModelAttribute("singerRegistration") SingerRegistration singerRegistration ,
-                                         BindingResult result) throws Exception {
+                                         BindingResult result) {
 
         Stage stage = singerRegistration.getStage();
         List<Stage> stages = getStageList();
-        System.out.println(result + "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" + singerRegistration.getStage().getStageId());
         for (Stage stg: stages) {
             if(stg.getStageId().equals(stage.getStageId())) {
                 stage = stg;
             }
 
         }
-        System.out.println(singerRegistration.getSchedule() + "------------------------------------------------------------------");
         User userForSinger = userService.save(singerRegistration.getUser());
 
         Schedule singerSchedule = singerRegistration.getSchedule();
@@ -89,7 +87,6 @@ public class SingerController {
         List<User> users = userService.getAllUsers(singers);
         List<Schedule> schedules = scheduleService.getAllSchedules(singers);
         List<Stage> stages = stageService.getAllStages(schedules);
-        System.out.println( users + "==========================================================" + schedules + stages);
 
         List<SingerRegistration> singerRegistrations = new ArrayList<>();
         for (int i = 0; i<singers.size(); i++) {
