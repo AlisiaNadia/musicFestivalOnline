@@ -35,17 +35,18 @@ public class BandController {
     private BandMembersService bandMembersService;
 
     @GetMapping("band-registration")
-    public String getSingersRegistration(@ModelAttribute("bandRegistration") BandRegistration bandRegistration) {
+    public String getBandRegistration(@ModelAttribute("bandRegistration") BandRegistration bandRegistration) {
         return "band-registration";
     }
 
     @PostMapping("band-registration")
-    public String addSingersRegistration(@Valid @ModelAttribute("bandRegistration") BandRegistration bandRegistration ,
+    public String addBandRegistration(@Valid @ModelAttribute("bandRegistration") BandRegistration bandRegistration ,
                                          BindingResult result){
 
 
         return "redirect:band-registration";
     }
+
 
     @ModelAttribute("stageList")
     public List<Stage> getStageList() {
