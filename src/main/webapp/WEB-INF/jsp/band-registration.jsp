@@ -68,7 +68,7 @@
                 <form:input path="name"/>
             </td>
         </tr>
-        <c:forEach items="${usersList}" var="user">
+        <c:forEach items="${users}" var="user">
             <tr>
                 <td>
                     Last name:
