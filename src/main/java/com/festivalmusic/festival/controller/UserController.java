@@ -22,9 +22,8 @@ public class UserController {
 
     @PostMapping("registration")
     public String addRegistration(@ModelAttribute("registration") User user, BindingResult result, Model model)  {
-        System.out.println(result.getFieldError(user.getUsername()) + "-------------------------------------------");
-        User user1 = userService.save(user);
 
+        User user1 = userService.save(user);
         if(user1 == null) {
             model.addAttribute("errors", "The username is already in use!");
             return "registration";

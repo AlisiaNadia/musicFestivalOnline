@@ -38,7 +38,7 @@
             <a class="nav-link" href="singer-registration">Add singer</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="addBand">Add band</a>
+            <a class="nav-link" href="band-registration">Add band</a>
         </li>
         <li class="nav-item">
             <sec:authorize access="!isAuthenticated()">
