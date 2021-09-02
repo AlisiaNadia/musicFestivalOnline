@@ -11,6 +11,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -22,7 +23,6 @@ public class UserServiceImpl implements UserService {
     private UserRepository userRepository;
 
     @Override
-    @Transactional
     public User save(User user){
 
         return userRepository.save(user);
@@ -30,7 +30,6 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    @Transactional
     public Boolean getUser(User user) {
         return userRepository.getUser(user);
     }
@@ -38,6 +37,16 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<User> getAllUsers(List<Singer> singers) {
         return userRepository.getAllUsers(singers);
+    }
+
+    @Override
+    public List<User> saveAll(List<User> users) {
+
+        List<User> userList = new ArrayList<>();
+        for (User user: users) {
+            userList.add(userRepository.save(user));
+        }
+        return userList;
     }
 
     @Override

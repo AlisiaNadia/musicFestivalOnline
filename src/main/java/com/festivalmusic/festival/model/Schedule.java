@@ -2,6 +2,7 @@ package com.festivalmusic.festival.model;
 
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 @Entity
@@ -14,9 +15,11 @@ public class Schedule {
     private Long scheduleId;
 
     @Column(name = "date")
+    @NotNull
     private Date scheduleDate;
 
     @Column(name = "time")
+    @NotNull
     private String time;
 
     @OneToOne(mappedBy = "scheduleId")
@@ -27,6 +30,7 @@ public class Schedule {
 
     @ManyToOne(fetch = FetchType.LAZY, targetEntity = Stage.class)
     @JoinColumn(name = "stage_id")
+    @NotNull
     private Stage stageId;
 
     public Long getScheduleId() {

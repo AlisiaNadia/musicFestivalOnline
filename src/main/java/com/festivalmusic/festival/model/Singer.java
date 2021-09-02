@@ -21,6 +21,15 @@ public class Singer {
     @OneToOne(mappedBy = "singerId")
     private BandMembers members;
 
+    public Singer(User user, Schedule savedSchedule) {
+        this.userId = user;
+        this.scheduleId = savedSchedule;
+    }
+
+    public Singer() {
+
+    }
+
     public Long getSingerId() {
         return singerId;
     }

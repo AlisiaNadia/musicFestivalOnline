@@ -8,6 +8,8 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @Controller
 public class UserController {
 
@@ -21,7 +23,11 @@ public class UserController {
 
 
     @PostMapping("registration")
-    public String addRegistration(@ModelAttribute("registration") User user, BindingResult result, Model model)  {
+    public String addRegistration(@Valid  @ModelAttribute("registration") User user, BindingResult result, Model model)  {
+
+        if(result.hasErrors()) {
+             return "registration";
+        }
 
         User user1 = userService.save(user);
         if(user1 == null) {

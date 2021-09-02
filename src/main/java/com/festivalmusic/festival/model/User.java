@@ -1,6 +1,10 @@
 package com.festivalmusic.festival.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "USERS")
@@ -12,24 +16,32 @@ public class User {
     private Long userId;
 
     @Column(name = "last_name")
+    @NotNull
     private String lastName;
 
     @Column(name = "first_name")
+    @NotNull
     private String firstName;
 
+
     @Column(name = "email")
+    @NotNull
     private String email;
 
     @Column(name = "phone")
+
     private String phone;
 
     @Column(name = "address")
+    @NotNull
     private String address;
 
     @Column(name = "username")
+    @NotNull
     private String username;
 
     @Column(name = "password")
+    @NotNull
     private String password;
 
     @OneToOne(mappedBy = "userId")

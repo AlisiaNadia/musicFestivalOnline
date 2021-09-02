@@ -1,11 +1,16 @@
 package com.festivalmusic.festival.model;
 
+import javax.validation.constraints.NotNull;
+
 public class SingerRegistration {
 
+    @NotNull
     private User user;
 
+    @NotNull
     private Schedule schedule;
 
+    @NotNull
     private Stage stage;
 
     public SingerRegistration(User user, Schedule schedule, Stage stage) {

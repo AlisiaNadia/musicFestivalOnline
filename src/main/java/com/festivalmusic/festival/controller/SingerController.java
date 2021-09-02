@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;;
 
+import javax.validation.Valid;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -43,8 +44,21 @@ public class SingerController {
     }
 
     @PostMapping("singer-registration")
-    public String addSingersRegistration( @ModelAttribute("singerRegistration") SingerRegistration singerRegistration ,
-                                         BindingResult result) {
+    public String addSingersRegistration(@Valid @ModelAttribute("singerRegistration") SingerRegistration singerRegistration ,
+                                         BindingResult result, Model model) {
+        if(result.hasErrors()) {
+            System.out.println(result + "3333333333333333333333333333333333333333333333333333333333333");
+            return "singer-registration";
+        }
+
+        System.out.println(result + "3333333333333333333333333333333333333333333333333333333333333" + singerRegistration);
+
+        User singerUser = userService.save(singerRegistration.getUser());
+
+        if(singerUser == null) {
+            model.addAttribute("errors", "The username is already in use!");
+            return "singer-registration";
+        }
 
         Stage stage = singerRegistration.getStage();
         List<Stage> stages = getStageList();
@@ -52,16 +66,14 @@ public class SingerController {
             if(stg.getStageId().equals(stage.getStageId())) {
                 stage = stg;
             }
-
         }
-        User userForSinger = userService.save(singerRegistration.getUser());
 
         Schedule singerSchedule = singerRegistration.getSchedule();
         singerSchedule.setStageId(stage);
         Schedule saveSchedule = scheduleService.save(singerSchedule);
 
         Singer singer = new Singer();
-        singer.setUserId(userForSinger);
+        singer.setUserId(singerUser);
         singer.setScheduleId(saveSchedule);
         Singer singer1 = singerService.save(singer);
 

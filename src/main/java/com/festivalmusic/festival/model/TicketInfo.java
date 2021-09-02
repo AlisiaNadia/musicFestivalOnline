@@ -1,6 +1,7 @@
 package com.festivalmusic.festival.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -14,17 +15,21 @@ public class TicketInfo {
     private Long ticketInfoId;
 
     @Column(name = "amount")
+    @NotNull
     private int amount;
 
     @Column(name = "type")
+    @NotNull
     private String type;
+
+    @Column(name = "price")
+    @NotNull
+    private BigDecimal price;
 
     @ManyToOne(cascade = CascadeType.ALL, targetEntity = Stage.class)
     @JoinColumn(name = "stage_id")
     private Stage stageId;
 
-    @Column(name = "price")
-    private BigDecimal price;
 
     @OneToMany(mappedBy = "ticketInfoId")
     private List<Ticket> ticket;
