@@ -1,5 +1,6 @@
 package com.festivalmusic.festival.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class BandRegistration {

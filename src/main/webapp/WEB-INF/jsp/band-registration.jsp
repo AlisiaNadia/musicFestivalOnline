@@ -1,25 +1,20 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: asarb
-  Date: 8/13/2021
-  Time: 5:31 PM
-  To change this template use File | Settings | File Templates.
---%>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 <head>
     <title>Add Band</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles/mystyle.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
 <body>
-
 <nav class="navbar navbar-expand-sm bg-light">
     <ul class="navbar-nav">
         <li class="nav-item">
@@ -57,66 +52,71 @@
     </ul>
 </nav>
 <body>
-<form:form modelAttribute="band-registration">
+<form:form modelAttribute="bandRegistration">
     <h1>Add band and band members</h1>
-    <table>
-        <tr>
-            <td>
-                Band name:
-            </td>
-            <td>
-                <form:input path="name"/>
-            </td>
-        </tr>
-        <c:forEach items="${users}" var="user">
+
+      Band name:<form:input path="name"/>
+
+
+       <c:forEach items="${bandRegistration.users}" var="user" varStatus="i">
+        <table class="member">
             <tr>
                 <td>
                     Last name:
                 </td>
                 <td>
-                    <form:input type="text" path="user.lastName"/>
+                    <form:input path="users[${i.index}].lastName" value="${user.lastName}"/>
+                    <form:errors path="users[${i.index}].lastName" />
                 </td>
             </tr>
+
             <tr>
                 <td>
                     First name:
                 </td>
                 <td>
-                    <form:input type="text" path="user.firstName"/>
+                    <form:input path="users[${i.index}].firstName" value="${user.firstName}"/>
+                    <form:errors path="users[${i.index}].firstName" />
                 </td>
             </tr>
+
             <tr>
                 <td>
                     Email:
                 </td>
                 <td>
-                    <form:input type="email" path="user.email"/>
+                    <form:input path="users[${i.index}].email" value="${user.email}"/>
+                    <form:errors path="users[${i.index}].email" />
                 </td>
             </tr>
+
             <tr>
                 <td>
-                    Phone number:
+                    Phone:
                 </td>
                 <td>
-                    <form:input type="text" path="user.phone"/>
+                    <form:input path="users[${i.index}].phone" value="${user.phone}"/>
+                    <form:errors path="users[${i.index}].phone" />
                 </td>
             </tr>
+
             <tr>
                 <td>
-                    Address:
+                   Address:
                 </td>
                 <td>
-                    <form:input type="text" path="user.address"/>
+                    <form:input path="users[${i.index}].address" value="${user.address}"/>
+                    <form:errors path="users[${i.index}].address" />
                 </td>
             </tr>
+
             <tr>
                 <td>
-                    Username:
+                     Username:
                 </td>
                 <td>
-                    <form:input path="user.username"/>
-                </td>
-                <td style="color: red">
+                    <form:input path="users[${i.index}].username" value="${user.username}"/>
+                    <form:errors path="users[${i.index}].username" />
                     <c:if test="${not empty errors}">
                         ${errors}
                     </c:if>
@@ -127,11 +127,15 @@
                     Password:
                 </td>
                 <td>
-                    <form:password path="user.password"/>
+                    <form:password  path="users[${i.index}].password" value="${user.password}"/><br/>
+                    <form:errors path="users[${i.index}].password" />
                 </td>
             </tr>
-        </c:forEach>
-        <button onclick="${usersList}">Add band member</button>
+
+
+        </table>
+            </c:forEach>
+
     </table>
         <h1>Add a Schedule for the band</h1>
         <table>
@@ -159,7 +163,7 @@
                 <td>
                     <form:select path="stage.stageId">
                         <option value="top">Stage</option>
-                        <c:forEach items="${stageList}" var="stage">
+                        <c:forEach items="${bandStageList}" var="stage">
                             <option value="${stage.stageId}">${stage.stageId}</option>
                         </c:forEach>
                     </form:select>
@@ -167,7 +171,15 @@
             </tr>
         </table>
 
-    <input type="submit" value="Add Registration">
+    <tr>
+        <td>
+            <input type="submit" name="register" value="Add Registration">
+        </td>
+        <td>
+            <input type="submit" name="addMember" value="Add Member" onclick="${bandMembers}">
+        </td>
+    </tr>
+
 </form:form>
 </body>
 </html>

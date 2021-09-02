@@ -59,7 +59,8 @@
                 Last name:
             </td>
             <td>
-                <form:input type="text" path="user.lastName"/>
+                <form:input path="user.lastName"/>
+                <form:errors path="user.lastName" />
             </td>
         </tr>
         <tr>
@@ -67,31 +68,8 @@
                 First name:
             </td>
             <td>
-                <form:input type="text" path="user.firstName"/>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                Email:
-            </td>
-            <td>
-                <form:input type="email" path="user.email"/>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                Phone number:
-            </td>
-            <td>
-                <form:input type="text" path="user.phone"/>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                Address:
-            </td>
-            <td>
-                <form:input type="text" path="user.address"/>
+                <form:input path="user.firstName"/>
+                <form:errors path="user.firstName" />
             </td>
         </tr>
         <tr>
@@ -99,7 +77,8 @@
                 Username:
             </td>
             <td>
-                <form:input path="user.username"/>
+                <form:input path="user.username" id="username"/>
+                <form:errors path="user.username" />
             </td>
             <td style="color: red">
                 <c:if test="${not empty errors}">
@@ -109,11 +88,40 @@
         </tr>
         <tr>
             <td>
+                Email:
+            </td>
+            <td>
+                <form:input path="user.email"/>
+                <form:errors path="user.email" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Phone number:
+            </td>
+            <td>
+                <form:input path="user.phone"/>
+                <form:errors path="user.phone" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Address:
+            </td>
+            <td>
+                <form:input path="user.address"/>
+                <form:errors path="user.address" />
+            </td>
+        </tr>
+        <tr>
+            <td>
                 Password:
             </td>
             <td>
                 <form:password path="user.password"/>
+                <form:errors path="user.password" />
             </td>
+        </tr>
         </tr>
     </table>
 
@@ -124,8 +132,8 @@
                 Date:
             </td>
             <td>
-                <fmt:formatDate value="${schedule.scheduleDate}" var="dateString" pattern="dd/MM/yyyy" />
                 <form:input type="date" path="schedule.scheduleDate"/>
+                <form:errors path="schedule.scheduleDate" />
             </td>
         </tr>
         <tr>
@@ -133,9 +141,8 @@
                 Time:
             </td>
             <td>
-
-                    <form:input type="text" path="schedule.time"/>
-
+                <form:input type="text" path="schedule.time"/>
+                <form:errors path="schedule.time" />
             </td>
         </tr>
                 <tr>
@@ -147,6 +154,7 @@
                                 <option value="${stage.stageId}">${stage.stageId}</option>
                             </c:forEach>
                         </form:select>
+                        <form:errors path="schedule.stageId" />
                     </td>
                 </tr>
     </table>

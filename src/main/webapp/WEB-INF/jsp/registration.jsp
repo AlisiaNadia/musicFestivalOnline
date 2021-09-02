@@ -53,8 +53,6 @@
 
 <h1>Registration</h1>
 <form:form modelAttribute="registration">
-    <form:errors path="*" cssClass="errorblock" element="div" />
-
     <table>
         <tr>
             <td>
@@ -62,6 +60,7 @@
             </td>
             <td>
                 <form:input path="lastName"/>
+                <form:errors path="lastName" />
             </td>
         </tr>
         <tr>
@@ -70,6 +69,7 @@
             </td>
             <td>
                 <form:input path="firstName"/>
+                <form:errors path="firstName" />
             </td>
         </tr>
         <tr>
@@ -77,7 +77,8 @@
                 Username:
             </td>
             <td>
-                <form:input path="username"/>
+                <form:input path="username" id="username"/>
+                <form:errors path="username" />
             </td>
             <td style="color: red">
                     <c:if test="${not empty errors}">
@@ -91,6 +92,7 @@
             </td>
             <td>
                 <form:input path="email"/>
+                <form:errors path="email" />
             </td>
         </tr>
         <tr>
@@ -99,6 +101,7 @@
             </td>
             <td>
                 <form:input path="phone"/>
+                <form:errors path="phone" />
             </td>
         </tr>
         <tr>
@@ -107,6 +110,7 @@
             </td>
             <td>
                 <form:input path="address"/>
+                <form:errors path="address" />
             </td>
         </tr>
         <tr>
@@ -115,6 +119,8 @@
             </td>
             <td>
                 <form:password path="password"/>
+                <form:errors path="password" />
+
             </td>
         </tr>
         <tr>

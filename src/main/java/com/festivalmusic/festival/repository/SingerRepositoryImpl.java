@@ -5,6 +5,8 @@ import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
+import java.sql.SQLOutput;
 import java.util.List;
 
 @Repository
@@ -22,8 +24,10 @@ public class SingerRepositoryImpl implements SingerRepository {
     }
 
     @Override
+    @Transactional
     public Singer save(Singer singer) {
         entityManager.persist(singer);
+        System.out.println(singer + "SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSInger+++++++++++++++++++++++++++++++");
         return singer;
     }
 }

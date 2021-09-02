@@ -20,6 +20,16 @@ public class BandMembers {
     @JoinColumn(name = "band_id")
     private Band bandId;
 
+    public BandMembers(Singer singer, Band savedBand) {
+
+        this.singerId = singer;
+        this.bandId = savedBand;
+    }
+
+    public BandMembers() {
+
+    }
+
     public Singer getSingerId() {
         return singerId;
     }

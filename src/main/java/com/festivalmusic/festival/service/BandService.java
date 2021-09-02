@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface BandService {
     List<Band> getAll();
+
+    Band save(Band band);
 }

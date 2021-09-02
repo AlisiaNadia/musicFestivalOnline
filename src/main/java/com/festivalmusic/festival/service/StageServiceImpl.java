@@ -16,7 +16,6 @@ public class StageServiceImpl implements StageService{
     StageRepository stageRepository;
 
     @Override
-    @Transactional
     public List<Stage> getAll() {
         return stageRepository.getAll();
     }

@@ -1,6 +1,7 @@
 package com.festivalmusic.festival.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Entity
@@ -13,6 +14,7 @@ public class Band {
     private Long bandId;
 
     @Column(name = "band_name")
+    @NotNull
     private String bandName;
 
     @OneToOne(fetch = FetchType.LAZY, targetEntity = Schedule.class)
@@ -21,6 +23,17 @@ public class Band {
 
     @OneToMany(mappedBy = "bandId")
     private List<BandMembers> members;
+
+    public Band(String name, Schedule scheduleId) {
+
+        this.bandName = name;
+        this.scheduleId = scheduleId;
+
+    }
+
+    public Band() {
+
+    }
 
     public Long getBandId() {
         return bandId;
