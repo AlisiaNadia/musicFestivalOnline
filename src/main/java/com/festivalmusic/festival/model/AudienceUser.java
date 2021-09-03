@@ -8,6 +8,10 @@ import java.io.Serializable;
 public class AudienceUser implements Serializable {
 
     @Id
+    @GeneratedValue
+    @Column(name = "audience_user_id")
+    private Long audienceUserId;
+
     @OneToOne(cascade = CascadeType.ALL, targetEntity = User.class)
     @JoinColumn(name = "user_info_id")
     private User userId;
@@ -15,6 +19,15 @@ public class AudienceUser implements Serializable {
     @OneToOne(cascade = CascadeType.ALL, targetEntity = Ticket.class)
     @JoinColumn(name = "ticket_id")
     private Ticket ticketId;
+
+    public AudienceUser(User user, Ticket ticketId) {
+        this.userId = user;
+        this.ticketId = ticketId;
+    }
+
+    public AudienceUser() {
+
+    }
 
     public User getUserId() {
         return userId;
@@ -31,5 +44,14 @@ public class AudienceUser implements Serializable {
 
     public void setTicketId(Ticket ticketId) {
         this.ticketId = ticketId;
+    }
+
+    @Override
+    public String toString() {
+        return "AudienceUser{" +
+                "audienceUserId=" + audienceUserId +
+                ", userId=" + userId +
+                ", ticketId=" + ticketId +
+                '}';
     }
 }

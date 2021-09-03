@@ -8,9 +8,6 @@ public class BandRegistration {
     private List<User> users;
 
     private Schedule schedule;
-
-    private Stage stage;
-
     private String name;
 
     public List<User> getUsers() {
@@ -29,13 +26,6 @@ public class BandRegistration {
         this.schedule = schedule;
     }
 
-    public Stage getStage() {
-        return stage;
-    }
-
-    public void setStage(Stage stage) {
-        this.stage = stage;
-    }
 
     public String getName() {
         return name;
@@ -50,7 +40,6 @@ public class BandRegistration {
         return "BandRegistration{" +
                 "users=" + users +
                 ", schedule=" + schedule +
-                ", stage=" + stage +
                 ", name='" + name + '\'' +
                 '}';
     }

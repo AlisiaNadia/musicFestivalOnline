@@ -15,4 +15,6 @@ public interface UserService extends UserDetailsService {
     List<User> getAllUsers(List<Singer> singers);
 
     List<User> saveAll(List<User> users);
+
+    User getUserByUsername(String name);
 }

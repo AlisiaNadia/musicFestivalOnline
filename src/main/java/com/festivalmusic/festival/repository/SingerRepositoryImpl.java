@@ -27,7 +27,6 @@ public class SingerRepositoryImpl implements SingerRepository {
     @Transactional
     public Singer save(Singer singer) {
         entityManager.persist(singer);
-        System.out.println(singer + "SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSInger+++++++++++++++++++++++++++++++");
         return singer;
     }
 }

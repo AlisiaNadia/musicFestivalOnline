@@ -1,4 +1,3 @@
-
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
@@ -21,7 +20,7 @@
             <a class="nav-link" href="/">Home</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="ticket">Buy Ticket</a>
+            <a class="nav-link" href="buy-ticket">Buy Ticket</a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="singersList">See singers list</a>
@@ -164,7 +163,7 @@
                     <form:select path="stage.stageId">
                         <option value="top">Stage</option>
                         <c:forEach items="${bandStageList}" var="stage">
-                            <option value="${stage.stageId}">${stage.stageId}</option>
+                            <option value="${stage.stageId}">${stage.stageId}  + ${stage.genre}</option>
                         </c:forEach>
                     </form:select>
                 </td>
@@ -176,7 +175,7 @@
             <input type="submit" name="register" value="Add Registration">
         </td>
         <td>
-            <input type="submit" name="addMember" value="Add Member" onclick="${bandMembers}">
+            <input type="submit" name="addMember" value="Add Member">
         </td>
     </tr>
 

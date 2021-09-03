@@ -19,7 +19,7 @@
             <a class="nav-link" href="/">Home</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="ticket">Buy Ticket</a>
+            <a class="nav-link" href="buy-ticket">Buy Ticket</a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="singersList">See singers list</a>
