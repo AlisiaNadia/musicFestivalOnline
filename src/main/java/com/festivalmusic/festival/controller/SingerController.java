@@ -47,11 +47,8 @@ public class SingerController {
     public String addSingersRegistration(@Valid @ModelAttribute("singerRegistration") SingerRegistration singerRegistration ,
                                          BindingResult result, Model model) {
         if(result.hasErrors()) {
-            System.out.println(result + "3333333333333333333333333333333333333333333333333333333333333");
             return "singer-registration";
         }
-
-        System.out.println(result + "3333333333333333333333333333333333333333333333333333333333333" + singerRegistration);
 
         User singerUser = userService.save(singerRegistration.getUser());
 
@@ -60,22 +57,9 @@ public class SingerController {
             return "singer-registration";
         }
 
-        Stage stage = singerRegistration.getStage();
-        List<Stage> stages = getStageList();
-        for (Stage stg: stages) {
-            if(stg.getStageId().equals(stage.getStageId())) {
-                stage = stg;
-            }
-        }
+        Schedule saveSchedule = scheduleService.save(singerRegistration.getSchedule());
 
-        Schedule singerSchedule = singerRegistration.getSchedule();
-        singerSchedule.setStageId(stage);
-        Schedule saveSchedule = scheduleService.save(singerSchedule);
-
-        Singer singer = new Singer();
-        singer.setUserId(singerUser);
-        singer.setScheduleId(saveSchedule);
-        Singer singer1 = singerService.save(singer);
+        Singer singer =  singerService.save(new Singer(singerUser, saveSchedule));
 
         return "redirect:singer-registration";
     }
@@ -92,19 +76,19 @@ public class SingerController {
         binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, false));
     }
 
-    @GetMapping("singersList")
-    public String getSingersList(Model model) {
-        List<Singer> singers = singerService.getAll();
-        List<User> users = userService.getAllUsers(singers);
-        List<Schedule> schedules = scheduleService.getAllSchedules(singers);
-        List<Stage> stages = stageService.getAllStages(schedules);
-
-        List<SingerRegistration> singerRegistrations = new ArrayList<>();
-        for (int i = 0; i<singers.size(); i++) {
-            singerRegistrations.add(new SingerRegistration(users.get(i), schedules.get(i), stages.get(i)));
-        }
-        model.addAttribute("singersList", singerRegistrations);
-
-        return "singersList";
-    }
+//    @GetMapping("singersList")
+//    public String getSingersList(Model model) {
+//        List<Singer> singers = singerService.getAll();
+//        List<User> users = userService.getAllUsers(singers);
+//        List<Schedule> schedules = scheduleService.getAllSchedules(singers);
+//        List<Stage> stages = stageService.getAllStages(schedules);
+//
+//        List<SingerRegistration> singerRegistrations = new ArrayList<>();
+//        for (int i = 0; i<singers.size(); i++) {
+//            singerRegistrations.add(new SingerRegistration(users.get(i), schedules.get(i), stages.get(i)));
+//        }
+//        model.addAttribute("singersList", singerRegistrations);
+//
+//        return "singersList";
+//    }
 }

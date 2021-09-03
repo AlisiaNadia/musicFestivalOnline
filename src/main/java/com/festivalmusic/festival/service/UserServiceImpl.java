@@ -24,7 +24,6 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User save(User user){
-
         return userRepository.save(user);
     }
 
@@ -47,6 +46,11 @@ public class UserServiceImpl implements UserService {
             userList.add(userRepository.save(user));
         }
         return userList;
+    }
+
+    @Override
+    public User getUserByUsername(String username) {
+        return  userRepository.findByUsername(username);
     }
 
     @Override

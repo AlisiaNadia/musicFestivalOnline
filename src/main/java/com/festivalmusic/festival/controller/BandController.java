@@ -71,27 +71,15 @@ public class BandController {
         }
 
         List<User> users = userService.saveAll(bandRegistration.getUsers());
-        Stage stage = bandRegistration.getStage();
-        List<Stage> stages = getBandStageList();
-        for (Stage stg: stages) {
-            if(stg.getStageId().equals(stage.getStageId())) {
-                stage = stg;
-            }
-        }
 
-        Schedule singerSchedule = bandRegistration.getSchedule();
-        singerSchedule.setStageId(stage);
-        Schedule savedSchedule = scheduleService.save(singerSchedule);
+        Schedule savedSchedule = scheduleService.save(bandRegistration.getSchedule());
 
         Band band = new Band(bandRegistration.getName(), savedSchedule);
         Band savedBand = bandService.save(band);
 
-        List<Singer> singers = new ArrayList<>();
-        singers = singerService.saveAll(users,savedSchedule);
+        List<Singer> singers = singerService.saveAll(users,savedSchedule);
 
-
-        List<BandMembers> bandMembers = new ArrayList<>();
-        bandMembers = bandMembersService.saveAll(savedBand, singers);
+        List<BandMembers> bandMembers =  bandMembersService.saveAll(savedBand, singers);
         return "redirect:band-registration";
     }
 

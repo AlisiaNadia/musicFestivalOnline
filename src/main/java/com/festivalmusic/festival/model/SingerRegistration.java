@@ -10,13 +10,9 @@ public class SingerRegistration {
     @NotNull
     private Schedule schedule;
 
-    @NotNull
-    private Stage stage;
-
-    public SingerRegistration(User user, Schedule schedule, Stage stage) {
+    public SingerRegistration(User user, Schedule schedule) {
         this.user = user;
         this.schedule = schedule;
-        this.stage = stage;
     }
 
     public User getUser() {
@@ -35,20 +31,12 @@ public class SingerRegistration {
         this.schedule = schedule;
     }
 
-    public Stage getStage() {
-        return stage;
-    }
-
-    public void setStage(Stage stage) {
-        this.stage = stage;
-    }
 
     @Override
     public String toString() {
         return "SingerRegistration{" +
                 "user=" + user +
                 ", schedule=" + schedule +
-                ", stage=" + stage +
                 '}';
     }
 }

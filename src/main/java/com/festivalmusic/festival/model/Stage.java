@@ -1,6 +1,7 @@
 package com.festivalmusic.festival.model;
 
 import javax.persistence.*;
+import javax.persistence.criteria.CriteriaBuilder;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 
@@ -19,7 +20,7 @@ public class Stage {
 
     @Column(name = "capacity")
     @NotNull
-    private int capacity;
+    private Integer capacity;
 
     @OneToMany(mappedBy = "stageId")
     private List<Schedule> schedule;

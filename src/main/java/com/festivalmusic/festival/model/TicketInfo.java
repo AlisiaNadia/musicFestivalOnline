@@ -1,7 +1,7 @@
 package com.festivalmusic.festival.model;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
+import javax.persistence.criteria.CriteriaBuilder;
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -14,16 +14,17 @@ public class TicketInfo {
     @Column(name = "ticket_info_id")
     private Long ticketInfoId;
 
-    @Column(name = "amount")
-    @NotNull
-    private int amount;
+    @Column(name = "tickets_amount")
+    private Integer amount;
+
+    @Column(name = "tickets_amount_left")
+    private Integer amountLeft;
+
 
     @Column(name = "type")
-    @NotNull
     private String type;
 
     @Column(name = "price")
-    @NotNull
     private BigDecimal price;
 
     @ManyToOne(cascade = CascadeType.ALL, targetEntity = Stage.class)
@@ -82,15 +83,22 @@ public class TicketInfo {
         this.ticket = ticket;
     }
 
+    public int getAmountLeft() {
+        return amountLeft;
+    }
+
+    public void setAmountLeft(int amountLeft) {
+        this.amountLeft = amountLeft;
+    }
+
     @Override
     public String toString() {
         return "TicketInfo{" +
                 "ticketInfoId=" + ticketInfoId +
                 ", amount=" + amount +
+                ", amountLeft=" + amountLeft +
                 ", type='" + type + '\'' +
-                ", stageId=" + stageId +
                 ", price=" + price +
-                ", ticket=" + ticket +
                 '}';
     }
 }

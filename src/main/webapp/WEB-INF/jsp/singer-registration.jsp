@@ -20,7 +20,7 @@
             <a class="nav-link" href="/">Home</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="ticket">Buy Ticket</a>
+            <a class="nav-link" href="buy-ticket">Buy Ticket</a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="singersList">See singers list</a>
@@ -148,10 +148,10 @@
                 <tr>
                     <td>Stage</td>
                     <td>
-                        <form:select path="stage.stageId">
+                        <form:select path="schedule.stageId.stageId">
                             <option value="top">Stage</option>
                             <c:forEach items="${stageList}" var="stage">
-                                <option value="${stage.stageId}">${stage.stageId}</option>
+                                <option value="${stage.stageId}">${stage.stageId} + ${stage.genre}</option>
                             </c:forEach>
                         </form:select>
                         <form:errors path="schedule.stageId" />
