@@ -39,13 +39,13 @@ public class TicketController {
     @PostMapping("buy-ticket")
     public String addBuyTicket(@Valid @ModelAttribute("ticketInformation") TicketInfo ticketInfo,
                                BindingResult result, Authentication auth) {
-        System.out.println("ticket"  + ticketInfo.getTicketInfoId() + auth.getName());
-
+        if(result.hasErrors()) {
+            return "buy-ticket";
+        }
         User user  = userService.getUserByUsername(auth.getName());
 
         AudienceUser audienceUser = audienceUserService.save(ticketInfo.getTicketInfoId() ,user);
 
-        System.out.println(audienceUser + "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
         return "redirect:buy-ticket";
     }
 
@@ -53,9 +53,7 @@ public class TicketController {
     public List<TicketInfo> getTicketsList() {
 
         List<TicketInfo> ticketsInfo = ticketInfoService.getAll();
-       // System.out.println(ticketsInfo + "+----------------------------------------------------");
         return ticketsInfo;
-
-
     }
+
 }

@@ -20,6 +20,7 @@ public class SingerRepositoryImpl implements SingerRepository {
 
         List<Singer> singers =
                 entityManager.createQuery("select s from Singer s").getResultList();
+
         return singers;
     }
 

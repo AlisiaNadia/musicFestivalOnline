@@ -31,7 +31,6 @@ public class AudienceUserServiceImpl implements AudienceUserService {
         Ticket ticket = ticketRepository.getTicketId(ticketInfoId);
 
         AudienceUser audienceUser =  audienceUserRepository.save(new AudienceUser(user, ticket));
-        System.out.println("here is the user" + audienceUser + "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
 
         ticketRepository.updateTicketNumber(ticketInfoId);
 

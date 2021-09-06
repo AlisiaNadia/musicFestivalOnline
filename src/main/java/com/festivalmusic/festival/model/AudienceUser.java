@@ -12,7 +12,7 @@ public class AudienceUser implements Serializable {
     @Column(name = "audience_user_id")
     private Long audienceUserId;
 
-    @OneToOne(cascade = CascadeType.ALL, targetEntity = User.class)
+    @ManyToOne(cascade = CascadeType.ALL, targetEntity = User.class)
     @JoinColumn(name = "user_info_id")
     private User userId;
 

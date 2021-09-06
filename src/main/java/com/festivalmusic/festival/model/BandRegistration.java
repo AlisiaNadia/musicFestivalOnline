@@ -8,6 +8,7 @@ public class BandRegistration {
     private List<User> users;
 
     private Schedule schedule;
+
     private String name;
 
     public List<User> getUsers() {

@@ -19,6 +19,7 @@ public class BandRepositoryImpl implements BandRepository {
 
         List<Band> bands =
                 entityManager.createQuery("select b from Band b").getResultList();
+
         return bands;
     }
 

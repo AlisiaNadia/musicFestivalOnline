@@ -17,18 +17,12 @@ public class Band {
     @NotNull
     private String bandName;
 
-    @OneToOne(fetch = FetchType.LAZY, targetEntity = Schedule.class)
-    @JoinColumn(name = "schedule_id")
-    private Schedule scheduleId;
-
     @OneToMany(mappedBy = "bandId")
     private List<BandMembers> members;
 
-    public Band(String name, Schedule scheduleId) {
+    public Band(String name) {
 
         this.bandName = name;
-        this.scheduleId = scheduleId;
-
     }
 
     public Band() {
@@ -51,14 +45,6 @@ public class Band {
         this.bandId = bandId;
     }
 
-    public Schedule getScheduleId() {
-        return scheduleId;
-    }
-
-    public void setScheduleId(Schedule scheduleId) {
-        this.scheduleId = scheduleId;
-    }
-
     public List<BandMembers> getMembers() {
         return members;
     }
@@ -72,8 +58,6 @@ public class Band {
         return "Band{" +
                 "bandId=" + bandId +
                 ", bandName='" + bandName + '\'' +
-                ", scheduleId=" + scheduleId +
-                ", members=" + members +
                 '}';
     }
 }

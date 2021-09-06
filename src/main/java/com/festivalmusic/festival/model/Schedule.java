@@ -4,6 +4,7 @@ package com.festivalmusic.festival.model;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "SCHEDULES")
@@ -22,11 +23,13 @@ public class Schedule {
     @NotNull
     private String time;
 
-    @OneToOne(mappedBy = "scheduleId")
-    private Singer singer;
+    @OneToMany(mappedBy = "scheduleId")
+    private List<Singer> singer;
 
-    @OneToOne(mappedBy = "scheduleId")
-    private Band band;
+//    @OneToOne(mappedBy = "scheduleId")
+//    private Band band;
+
+    //daca nu merge problema s-ar putea sa fie cu onetone
 
     @ManyToOne(fetch = FetchType.LAZY, targetEntity = Stage.class)
     @JoinColumn(name = "stage_id")
@@ -53,20 +56,12 @@ public class Schedule {
         this.scheduleDate = scheduleDate;
     }
 
-    public Singer getSinger() {
+    public List<Singer> getSinger() {
         return singer;
     }
 
-    public void setSinger(Singer singer) {
+    public void setSinger(List<Singer> singer) {
         this.singer = singer;
-    }
-
-    public Band getBand() {
-        return band;
-    }
-
-    public void setBand(Band band) {
-        this.band = band;
     }
 
     public Stage getStageId() {
@@ -83,9 +78,6 @@ public class Schedule {
                 "scheduleId=" + scheduleId +
                 ", date=" + scheduleDate +
                 ", time='" + time + '\'' +
-                ", singer=" + singer +
-                ", band=" + band +
-                ", stageId=" + stageId +
                 '}';
     }
 }

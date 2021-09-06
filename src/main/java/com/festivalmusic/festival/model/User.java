@@ -1,10 +1,8 @@
 package com.festivalmusic.festival.model;
 
 import javax.persistence.*;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @Entity
 @Table(name = "USERS")
@@ -47,8 +45,8 @@ public class User {
     @OneToOne(mappedBy = "userId")
     private Singer singer;
 
-    @OneToOne(mappedBy = "userId")
-    private AudienceUser audienceUser;
+    @OneToMany(mappedBy = "userId")
+    private List<AudienceUser> audienceUser;
 
     @Column(name = "authority")
     private String roles;

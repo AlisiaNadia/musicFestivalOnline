@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
     <title>Bands</title>
@@ -10,6 +11,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="styles/mystyle.css">
 </head>
 <body>
 
@@ -50,15 +52,29 @@
     </ul>
 </nav>
 <body>
-<table>
-    <c:forEach items="${Bands.band}" var="band" varStatus="tagStatus">
+<table class="users">
+    <tr>
+        <td>Band Name</td>
+        <td>Members</td>
+        <td>Scheduled time</td>
+        <td>Scheduled date</td>
+        <td>Stage</td>
+        <td>Stage genre</td>
+    </tr>
+    <c:forEach items="${bandsList}" var="band">
         <tr>
-            <td>${band.name}</td>
-        <c:forEach items="${band.members}" var="members" varStatus="tagStatus">
-            <td>${members.firstName} + ${members.firstName}</td>
+            <td>${band.bandName}</td>
+            <td>
+                <c:forEach items="${band.members}" var="member">
+                    ${member.singerId.userId.lastName} ${member.singerId.userId.firstName} <br>
+                 </c:forEach>
+            </td>
+                <td>${band.members.get(0).singerId.scheduleId.time}</td>
+                <td><fmt:formatDate pattern="dd/MM/yyyy" value="${band.members.get(0).singerId.scheduleId.scheduleDate}"/></td>
+                <td>${band.members.get(0).singerId.scheduleId.stageId.stageId}</td>
+                <td>${band.members.get(0).singerId.scheduleId.stageId.genre}</td>
         </tr>
     </c:forEach>
 </table>
-
 </body>
 </html>

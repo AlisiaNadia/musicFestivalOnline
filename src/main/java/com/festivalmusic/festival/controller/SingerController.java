@@ -76,19 +76,11 @@ public class SingerController {
         binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, false));
     }
 
-//    @GetMapping("singersList")
-//    public String getSingersList(Model model) {
-//        List<Singer> singers = singerService.getAll();
-//        List<User> users = userService.getAllUsers(singers);
-//        List<Schedule> schedules = scheduleService.getAllSchedules(singers);
-//        List<Stage> stages = stageService.getAllStages(schedules);
-//
-//        List<SingerRegistration> singerRegistrations = new ArrayList<>();
-//        for (int i = 0; i<singers.size(); i++) {
-//            singerRegistrations.add(new SingerRegistration(users.get(i), schedules.get(i), stages.get(i)));
-//        }
-//        model.addAttribute("singersList", singerRegistrations);
-//
-//        return "singersList";
-//    }
+    @GetMapping("singersList")
+    public String getSingersListRegistration(@ModelAttribute("singer") Singer singer, Model model) {
+        List<Singer> singers = singerService.getAll();
+        model.addAttribute("singersList",singers );
+        return "singersList";
+    }
+
 }
