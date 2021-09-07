@@ -3,5 +3,22 @@
     margin-top: 5px;
     display: block;
 }
+.users {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
 
+.users td, .users th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+.users th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #04AA6D;
+    color: greenyellow;
+}
 

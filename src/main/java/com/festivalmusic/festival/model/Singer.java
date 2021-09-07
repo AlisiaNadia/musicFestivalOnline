@@ -14,7 +14,7 @@ public class Singer {
     @JoinColumn(name = "user_info_id")
     private User userId;
 
-    @OneToOne(fetch = FetchType.LAZY, targetEntity = Schedule.class)
+    @ManyToOne(fetch = FetchType.LAZY, targetEntity = Schedule.class)
     @JoinColumn(name = "schedule_id")
     private Schedule scheduleId;
 
@@ -58,9 +58,6 @@ public class Singer {
     public String toString() {
         return "Singer{" +
                 "singerId=" + singerId +
-                ", userId=" + userId +
-                ", scheduleId=" + scheduleId +
-                ", members=" + members +
                 '}';
     }
 }

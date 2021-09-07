@@ -53,9 +53,6 @@ public class BandController {
            users = bandRegistration.getUsers();
             users.add(new User());
         }
-
-        BandRegistration band = new BandRegistration();
-        band.setUsers(users);
         bandRegistration.setUsers(users);
 
        model.addAttribute("bandRegistration",bandRegistration);
@@ -74,12 +71,12 @@ public class BandController {
 
         Schedule savedSchedule = scheduleService.save(bandRegistration.getSchedule());
 
-        Band band = new Band(bandRegistration.getName(), savedSchedule);
-        Band savedBand = bandService.save(band);
+        Band band = bandService.save(new Band(bandRegistration.getName()));
 
         List<Singer> singers = singerService.saveAll(users,savedSchedule);
 
-        List<BandMembers> bandMembers =  bandMembersService.saveAll(savedBand, singers);
+        List<BandMembers> bandMembers =  bandMembersService.saveAll(band, singers);
+
         return "redirect:band-registration";
     }
 
@@ -94,5 +91,14 @@ public class BandController {
         final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, false));
     }
+
+
+    @GetMapping("bandsList")
+    public String getBandsList(@ModelAttribute("band") Band band, Model model) {
+        List<Band> bands = bandService.getAll();
+        model.addAttribute("bandsList",bands );
+        return "bandsList";
+    }
+
 
 }

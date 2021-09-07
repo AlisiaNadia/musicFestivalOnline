@@ -17,7 +17,7 @@ public class BandServiceImpl implements BandService {
 
     @Override
     public List<Band> getAll() {
-        return null;
+        return bandRepository.getAll();
     }
 
     @Override

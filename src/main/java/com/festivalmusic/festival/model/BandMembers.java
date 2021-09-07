@@ -50,8 +50,6 @@ public class BandMembers {
     public String toString() {
         return "BandMembers{" +
                 "bandMemberId=" + bandMemberId +
-                ", singerId=" + singerId +
-                ", bandId=" + bandId +
                 '}';
     }
 }

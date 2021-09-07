@@ -160,7 +160,7 @@
             <tr>
                 <td>Stage</td>
                 <td>
-                    <form:select path="stage.stageId">
+                    <form:select path="schedule.stageId.stageId">
                         <option value="top">Stage</option>
                         <c:forEach items="${bandStageList}" var="stage">
                             <option value="${stage.stageId}">${stage.stageId}  + ${stage.genre}</option>
