@@ -7,7 +7,9 @@ import org.springframework.stereotype.Repository;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Repository
 public class StageRepositoryImpl implements StageRepository{
@@ -34,4 +36,5 @@ public class StageRepositoryImpl implements StageRepository{
                 ("select s from Stage s where s.stageId IN '" + stagesId + "'").getResultList();
         return stages;
     }
+
 }

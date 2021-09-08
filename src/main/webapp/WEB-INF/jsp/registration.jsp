@@ -16,7 +16,7 @@
 <nav class="navbar navbar-expand-sm bg-light">
     <ul class="navbar-nav">
         <li class="nav-item">
-            <a class="nav-link" href="/">Home</a>
+            <a class="nav-link" href="festival-news">Festival news</a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="buy-ticket">Buy Ticket</a>

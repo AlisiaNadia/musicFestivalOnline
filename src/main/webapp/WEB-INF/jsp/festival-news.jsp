@@ -15,7 +15,7 @@
 <nav class="navbar navbar-expand-sm bg-light">
     <ul class="navbar-nav">
         <li class="nav-item">
-            <a class="nav-link" href="/">Home</a>
+            <a class="nav-link" href="festival-news">Festival news</a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="buy-ticket">Buy Ticket</a>
@@ -49,6 +49,8 @@
     </ul>
 </nav>
 <body>
-
+<h2>The most likely ticket type to be sold out is:${ticket}</h2> <br>
+<h2>The most likely stage  to be sold out is stage number:${stage}</h2> <br>
+<h2>The most popular genre is:${genre}</h2> <br>
 </body>
 </html>

@@ -20,7 +20,6 @@ public class TicketInfo {
     @Column(name = "tickets_amount_left")
     private Integer amountLeft;
 
-
     @Column(name = "type")
     private String type;
 
@@ -30,7 +29,6 @@ public class TicketInfo {
     @ManyToOne(cascade = CascadeType.ALL, targetEntity = Stage.class)
     @JoinColumn(name = "stage_id")
     private Stage stageId;
-
 
     @OneToMany(mappedBy = "ticketInfoId")
     private List<Ticket> ticket;
