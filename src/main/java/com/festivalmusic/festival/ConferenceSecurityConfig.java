@@ -36,12 +36,7 @@ public class ConferenceSecurityConfig extends WebSecurityConfigurerAdapter {
                 .loginProcessingUrl("/perform_login")
                 .failureUrl("/login?error=true")
                 .permitAll()
-                .defaultSuccessUrl("/", true)
-
-//                .and()
-//                .rememberMe()
-//                .key("superSecretKey")
-//                .tokenRepository(tokenRepository())
+                .defaultSuccessUrl("/festival-news", true)
 
                 .and()
                 .logout()
@@ -50,15 +45,8 @@ public class ConferenceSecurityConfig extends WebSecurityConfigurerAdapter {
                 .invalidateHttpSession(true)
                 .deleteCookies("JSESSIONID")
                 .permitAll();
-               // .logoutUrl(); -instead of logoutrequestmatcher
 
     }
-
-//    @Override
-//    protected void configure(final AuthenticationManagerBuilder auth) throws Exception {
-//
-//        auth.jdbcAuthentication().dataSource(dataSource);
-//    }
 
 @Bean
 public UserDetailsService userDetailsService() {
@@ -84,13 +72,4 @@ public UserDetailsService userDetailsService() {
         auth.authenticationProvider(authenticationProvider());
     }
 
-//    @Override
-//    protected void configure(HttpSecurity http) throws Exception {
-//        http.authorizeRequests()
-//                .anyRequest().authenticated()
-//                .and()
-//                .formLogin().permitAll()
-//                .and()
-//                .logout().permitAll();
-//    }
 }
