@@ -41,10 +41,11 @@ public class ConferenceSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .logout()
                 .logoutSuccessUrl("/login?logout=true")
-                .logoutRequestMatcher(new AntPathRequestMatcher("/perform_logout", "GET"))
+                .logoutRequestMatcher(new AntPathRequestMatcher("/logout", "GET"))
                 .invalidateHttpSession(true)
                 .deleteCookies("JSESSIONID")
                 .permitAll();
+               // .logoutUrl("logout");
 
     }
 

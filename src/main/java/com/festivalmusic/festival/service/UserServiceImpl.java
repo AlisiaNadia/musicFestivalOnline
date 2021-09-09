@@ -34,11 +34,6 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<User> getAllUsers(List<Singer> singers) {
-        return userRepository.getAllUsers(singers);
-    }
-
-    @Override
     public List<User> saveAll(List<User> users) {
 
         List<User> userList = new ArrayList<>();

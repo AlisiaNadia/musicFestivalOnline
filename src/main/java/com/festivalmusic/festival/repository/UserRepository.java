@@ -13,6 +13,5 @@ public interface UserRepository {
 
     Boolean getUser(User user);
 
-    List<User> getAllUsers(List<Singer> singers);
 
 }
