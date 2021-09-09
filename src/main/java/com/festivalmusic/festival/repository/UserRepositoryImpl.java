@@ -62,18 +62,4 @@ public class UserRepositoryImpl implements UserRepository {
         }
         return false;
     }
-
-    @Override
-    public List<User> getAllUsers(List<Singer> singers) {
-
-        List<Long> usersId = new ArrayList<>();
-
-        for (Singer singer: singers) {
-            usersId.add(singer.getUserId().getUserId());
-        }
-        List<User> users = entityManager.createQuery
-                ("select u from User u where u.userId IN :usersId ").getResultList();
-        return users;
-    }
-
 }
