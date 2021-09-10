@@ -28,10 +28,10 @@ public class UserServiceImpl implements UserService {
     }
 
 
-    @Override
-    public Boolean getUser(User user) {
-        return userRepository.getUser(user);
-    }
+//    @Override
+//    public Boolean getUser(User user) {
+//        return userRepository.getUser(user);
+//    }
 
     @Override
     public List<User> saveAll(List<User> users) {

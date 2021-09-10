@@ -10,7 +10,7 @@ public interface UserService extends UserDetailsService {
 
     User save(User user);
 
-    Boolean getUser(User user);
+    //Boolean getUser(User user);
 
     List<User> saveAll(List<User> users);
 
