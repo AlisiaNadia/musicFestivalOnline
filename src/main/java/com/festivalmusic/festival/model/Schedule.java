@@ -26,11 +26,6 @@ public class Schedule {
     @OneToMany(mappedBy = "scheduleId")
     private List<Singer> singer;
 
-//    @OneToOne(mappedBy = "scheduleId")
-//    private Band band;
-
-    //daca nu merge problema s-ar putea sa fie cu onetone
-
     @ManyToOne(fetch = FetchType.LAZY, targetEntity = Stage.class)
     @JoinColumn(name = "stage_id")
     @NotNull
