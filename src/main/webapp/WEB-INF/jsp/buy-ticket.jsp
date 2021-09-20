@@ -8,13 +8,14 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles/mystyle.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
 <body>
 
-<nav class="navbar navbar-expand-sm bg-light">
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
     <ul class="navbar-nav">
         <li class="nav-item">
             <a class="nav-link" href="festival-news">Festival news</a>
@@ -51,51 +52,50 @@
     </ul>
 </nav>
 <body>
-<table>
-
-<form:form modelAttribute="ticketInformation">
-    <tr>
-        <td>
-            Chose ticket
-        </td>
-        <td>
-            Stage
-        </td>
-        <td>
-            Genre
-        </td>
-        <td>
-            Ticket Price
-        </td>
-        <td>
-            Ticket Type
-        </td>
-    </tr>
-
-    <c:forEach items="${ticketInfoList}" var="ticket">
+<table class="list-container">
+    <form:form modelAttribute="ticketInformation">
         <tr>
-            <td>
-                <form:radiobutton path="ticketInfoId" value="${ticket.ticketInfoId}" name="${ticket.ticketInfoId}"/>
-            </td>
-            <td>
-                <label>${ticket.stageId.stageId}</label>
-            </td>
-            <td>
-                <label>${ticket.stageId.genre}</label>
-            </td>
-            <td>
-                <label>${ticket.price}</label>
-            </td>
-            <td>
-                <label>${ticket.type}</label>
-            </td>
-
+            <th>
+                Chose ticket
+            </th>
+            <th>
+                Stage
+            </th>
+            <th>
+                Genre
+            </th>
+            <th>
+                Ticket Price
+            </th>
+            <th>
+                Ticket Type
+            </th>
         </tr>
 
-    </c:forEach>
+        <c:forEach items="${ticketInfoList}" var="ticket">
+            <tr>
+                <td>
+                    <form:radiobutton path="ticketInfoId" value="${ticket.ticketInfoId}" name="${ticket.ticketInfoId}"/>
+                </td>
+                <td>
+                    <label>${ticket.stageId.stageId}</label>
+                </td>
+                <td>
+                    <label>${ticket.stageId.genre}</label>
+                </td>
+                <td>
+                    <label>${ticket.price}</label>
+                </td>
+                <td>
+                    <label>${ticket.type}</label>
+                </td>
 
-</table>
-<input type="submit" value="Buy ticket">
+            </tr>
+
+        </c:forEach>
+
+    </table>
+    <input type="submit" value="Buy ticket">
 </form:form>
 </body>
 </html>

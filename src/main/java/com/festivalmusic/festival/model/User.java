@@ -18,7 +18,6 @@ public class User {
     @Column(name = "first_name")
     private String firstName;
 
-
     @Column(name = "email")
     private String email;
 

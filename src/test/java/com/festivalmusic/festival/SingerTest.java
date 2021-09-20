@@ -14,7 +14,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import javax.persistence.Table;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;

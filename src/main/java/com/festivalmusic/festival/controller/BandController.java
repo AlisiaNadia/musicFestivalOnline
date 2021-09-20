@@ -41,7 +41,16 @@ public class BandController {
     private BandValidation bandValidation;
 
     @GetMapping("band-registration")
-    public String getBandRegistration(@ModelAttribute("bandRegistration") BandRegistration bandRegistration) {
+    public String getBandRegistration(@ModelAttribute("bandRegistration") BandRegistration bandRegistration, Model model) {
+
+        List<User> users = new ArrayList<>();
+
+        users.add(new User());
+        users.add(new User());
+
+        bandRegistration.setUsers(users);
+        model.addAttribute("bandRegistration",bandRegistration);
+
       return "band-registration";
     }
 

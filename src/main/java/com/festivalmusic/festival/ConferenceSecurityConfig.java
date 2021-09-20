@@ -26,7 +26,7 @@ public class ConferenceSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/anonymous*").anonymous()
                 .antMatchers("/login*").permitAll()
                 .antMatchers("/registration*").permitAll()
-                .antMatchers("/assets/css/**", "assets/js/**", "/images/**").permitAll()
+                .antMatchers("/styles/**").permitAll()
                 .antMatchers("/index*").permitAll()
                 .anyRequest().authenticated()
 
