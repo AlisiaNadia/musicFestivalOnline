@@ -2,6 +2,7 @@ package com.festivalmusic.festival.controller;
 
 import com.festivalmusic.festival.model.User;
 import com.festivalmusic.festival.service.UserService;
+import com.festivalmusic.festival.validation.UserValidation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,15 +26,20 @@ public class UserController {
     @PostMapping("registration")
     public String addRegistration(@Valid  @ModelAttribute("registration") User user, BindingResult result, Model model)  {
 
-        if(result.hasErrors()) {
-             return "registration";
+        new UserValidation().validate(user, result);
+
+        User usernameCheck = userService.getUserByUsername(user.getUsername());
+
+        if (usernameCheck != null) {
+            model.addAttribute("usernameExists", "The username is already in use!");
+            return "registration";
+        }
+
+        if (result.hasErrors()) {
+            return "registration";
         }
 
         User user1 = userService.save(user);
-        if(user1 == null) {
-            model.addAttribute("errors", "The username is already in use!");
-            return "registration";
-        }
         return "redirect:login";
     }
 

@@ -6,25 +6,32 @@ import com.festivalmusic.festival.service.UserService;
 import org.junit.Assert;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 
+import javax.sql.DataSource;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @SpringBootTest
+@ActiveProfiles("test")
 public class UserTests {
-
 
     @MockBean
     private UserService userService;
 
     private List<User> userList;
+
+    @Autowired
+    private DataSource dataSource;
 
     @Autowired
     private PasswordEncoder passwordEncoder;

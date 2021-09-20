@@ -24,17 +24,4 @@ public class StageRepositoryImpl implements StageRepository{
         return registrationList;
     }
 
-    @Override
-    public List<Stage> getAllStages(List<Schedule> schedules) {
-        List<Long> stagesId = new ArrayList<>();
-
-        for (Schedule schedule: schedules) {
-            stagesId.add(schedule.getStageId().getStageId());
-        }
-
-        List<Stage> stages = entityManager.createQuery
-                ("select s from Stage s where s.stageId IN '" + stagesId + "'").getResultList();
-        return stages;
-    }
-
 }

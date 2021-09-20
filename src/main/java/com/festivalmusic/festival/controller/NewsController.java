@@ -35,9 +35,4 @@ public class NewsController {
         return "festival-news";
     }
 
-//    @PostMapping("festival-news")
-//    public String addSingersRegistration(@Valid @ModelAttribute("ticketInfo") TicketInfo ticketInfo ,
-//                                         BindingResult result) {
-//        return "festival-news";
-//    }
 }

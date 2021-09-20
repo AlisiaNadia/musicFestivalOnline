@@ -32,8 +32,13 @@ public class Stage {
 
     }
 
-    public Stage(Long stageId, String genre, int capacity) {
-        this.stageId = stageId;
+    public Stage(String genre, int capacity) {
+        this.genre = genre;
+        this.capacity = capacity;
+    }
+
+    public Stage(Long id, String genre, int capacity) {
+        this.stageId = id;
         this.genre = genre;
         this.capacity = capacity;
     }

@@ -26,12 +26,6 @@ public class StageServiceImpl implements StageService{
     }
 
     @Override
-    public List<Stage> getAllStages(List<Schedule> schedules) {
-        return
-                stageRepository.getAllStages(schedules);
-    }
-
-    @Override
     public Long getTheMostLikelyStageToBeSoldOut() {
 
         Map<Long, Integer> stages = ticketInfoRepository.getTheMostLikelyStageToBeSoldOut();
