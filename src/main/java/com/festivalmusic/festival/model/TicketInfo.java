@@ -33,6 +33,18 @@ public class TicketInfo {
     @OneToMany(mappedBy = "ticketInfoId")
     private List<Ticket> ticket;
 
+    public TicketInfo(Integer amount, Integer amountLeft, String type, BigDecimal price, Stage stageId) {
+        this.amount = amount;
+        this.amountLeft = amountLeft;
+        this.type = type;
+        this.price = price;
+        this.stageId = stageId;
+    }
+
+    public TicketInfo() {
+
+    }
+
     public Long getTicketInfoId() {
         return ticketInfoId;
     }

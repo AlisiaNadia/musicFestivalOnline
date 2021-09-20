@@ -23,12 +23,11 @@ public class UserRepositoryImpl implements UserRepository {
 
     @Override
     public User findByUsername(String username) {
-        List<User> users =
-                entityManager.createQuery("select u from User u where u.username= '"+ username +"'").getResultList();
-        if(users.size() == 1) {
-            return users.get(0);
-        }
-        return null;
+        User user = (User) entityManager.createQuery("select u from User u where u.username= '"+
+                username +"'").getResultList().stream().findFirst().orElse(null);
+
+        System.out.println(user + "*************************************************************");
+        return user;
     }
 
     @Override
@@ -37,12 +36,6 @@ public class UserRepositoryImpl implements UserRepository {
 
         user.setRoles("ROLES_USER");
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        List<User> users =
-                entityManager.createQuery("select u from User u where u.username= '"+ user.getUsername() +"'").getResultList();
-
-        if(users.size() == 1) {
-           return null;
-       }
         entityManager.persist(user);
         return user;
 

@@ -8,8 +8,6 @@ import java.util.List;
 public interface StageService {
     List<Stage> getAll();
 
-    List<Stage> getAllStages(List<Schedule> schedules);
-
     Long getTheMostLikelyStageToBeSoldOut();
 
     String getTheMostPopularGenre();

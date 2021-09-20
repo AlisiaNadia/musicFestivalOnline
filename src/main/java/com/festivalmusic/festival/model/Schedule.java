@@ -1,6 +1,8 @@
 package com.festivalmusic.festival.model;
 
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
@@ -30,6 +32,17 @@ public class Schedule {
     @JoinColumn(name = "stage_id")
     @NotNull
     private Stage stageId;
+
+    public Schedule(Date scheduleDate, String time, Stage stageId) {
+
+        this.scheduleDate = scheduleDate;
+        this.time = time;
+        this.stageId = stageId;
+    }
+
+    public Schedule() {
+
+    }
 
     public Long getScheduleId() {
         return scheduleId;

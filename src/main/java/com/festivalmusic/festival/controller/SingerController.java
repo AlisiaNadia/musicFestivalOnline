@@ -5,6 +5,8 @@ import com.festivalmusic.festival.service.ScheduleService;
 import com.festivalmusic.festival.service.SingerService;
 import com.festivalmusic.festival.service.UserService;
 import com.festivalmusic.festival.service.StageService;
+import com.festivalmusic.festival.validation.SingleValidation;
+import com.festivalmusic.festival.validation.UserValidation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
@@ -14,7 +16,8 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;;
+import org.springframework.web.bind.annotation.PostMapping;
+import sun.management.jmxremote.SingleEntryRegistry;;
 
 import javax.validation.Valid;
 import java.text.SimpleDateFormat;
@@ -45,17 +48,25 @@ public class SingerController {
 
     @PostMapping("singer-registration")
     public String addSingersRegistration(@Valid @ModelAttribute("singerRegistration") SingerRegistration singerRegistration ,
+
                                          BindingResult result, Model model) {
-        if(result.hasErrors()) {
+
+        new SingleValidation().validate(singerRegistration, result);
+
+        User usernameCheck = userService.getUserByUsername(singerRegistration.getUser().getUsername());
+
+        if (usernameCheck != null) {
+
+            model.addAttribute("usernameExists", "The username is already in use!");
             return "singer-registration";
         }
+
+        if (result.hasErrors()) {
+            return "singer-registration";
+        }
+
 
         User singerUser = userService.save(singerRegistration.getUser());
-
-        if(singerUser == null) {
-            model.addAttribute("errors", "The username is already in use!");
-            return "singer-registration";
-        }
 
         Schedule saveSchedule = scheduleService.save(singerRegistration.getSchedule());
 
@@ -73,7 +84,7 @@ public class SingerController {
     @InitBinder
     public final void initBinderUsuariosFormValidator(WebDataBinder binder) {
         final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, false));
+        binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
     }
 
     @GetMapping("singersList")
