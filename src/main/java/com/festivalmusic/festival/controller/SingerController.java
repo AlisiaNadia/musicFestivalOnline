@@ -17,11 +17,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import sun.management.jmxremote.SingleEntryRegistry;;
 
-import javax.validation.Valid;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -47,7 +44,7 @@ public class SingerController {
     }
 
     @PostMapping("singer-registration")
-    public String addSingersRegistration(@Valid @ModelAttribute("singerRegistration") SingerRegistration singerRegistration ,
+    public String addSingersRegistration(@ModelAttribute("singerRegistration") SingerRegistration singerRegistration ,
 
                                          BindingResult result, Model model) {
 

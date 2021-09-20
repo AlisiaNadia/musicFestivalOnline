@@ -1,7 +1,6 @@
 package com.festivalmusic.festival.model;
 
 import javax.persistence.*;
-import javax.persistence.criteria.CriteriaBuilder;
 import java.math.BigDecimal;
 import java.util.List;
 

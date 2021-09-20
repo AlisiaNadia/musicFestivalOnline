@@ -1,9 +1,6 @@
 package com.festivalmusic.festival.model;
 
 import javax.persistence.*;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Entity
@@ -23,7 +20,6 @@ public class User {
 
 
     @Column(name = "email")
-    @Email
     private String email;
 
     @Column(name = "phone")

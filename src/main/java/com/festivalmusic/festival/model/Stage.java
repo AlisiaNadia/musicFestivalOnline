@@ -1,8 +1,6 @@
 package com.festivalmusic.festival.model;
 
 import javax.persistence.*;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Entity
@@ -15,11 +13,9 @@ public class Stage {
     private Long stageId;
 
     @Column(name = "genre")
-    @NotNull
     private String genre;
 
     @Column(name = "capacity")
-    @NotNull
     private Integer capacity;
 
     @OneToMany(mappedBy = "stageId")
