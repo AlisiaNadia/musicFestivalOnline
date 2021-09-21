@@ -60,7 +60,7 @@ public class BandController {
 
         List<User> users = new ArrayList<>();
 
-        if( bandRegistration.getUsers() == null ) {
+        if ( bandRegistration.getUsers() == null ) {
             users.add(new User());
         } else {
            users = bandRegistration.getUsers();
@@ -100,7 +100,7 @@ public class BandController {
                 return "band-registration";
         }
 
-        if(result.hasErrors()) {
+        if (result.hasErrors()) {
             return "band-registration";
         }
 

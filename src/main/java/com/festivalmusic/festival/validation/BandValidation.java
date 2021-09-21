@@ -56,5 +56,4 @@ public class BandValidation implements Validator {
             }
         }
     }
-
 }

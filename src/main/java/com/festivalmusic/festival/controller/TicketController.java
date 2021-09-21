@@ -38,7 +38,7 @@ public class TicketController {
     @PostMapping("buy-ticket")
     public String addBuyTicket(@ModelAttribute("ticketInformation") TicketInfo ticketInfo,
                                BindingResult result, Authentication auth) {
-        if(result.hasErrors()) {
+        if (result.hasErrors()) {
             return "buy-ticket";
         }
         User user  = userService.getUserByUsername(auth.getName());

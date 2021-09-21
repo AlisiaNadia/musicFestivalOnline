@@ -25,7 +25,6 @@ input[type=submit] {
     cursor: pointer;
 }
 
-
 .login-container{
     border-radius: 5px;
     position: relative;
@@ -62,7 +61,6 @@ input[type=submit] {
     height: auto;
 }
 
-
 .list-container {
     top: 5%;
     width: 100%;
@@ -73,7 +71,6 @@ input[type=submit] {
     border: 1px solid black;
     padding: 8px;
 }
-
 
 .list-container th {
     padding-top: 12px;
