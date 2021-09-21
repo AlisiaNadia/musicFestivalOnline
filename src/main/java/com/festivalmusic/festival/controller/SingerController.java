@@ -6,7 +6,6 @@ import com.festivalmusic.festival.service.SingerService;
 import com.festivalmusic.festival.service.UserService;
 import com.festivalmusic.festival.service.StageService;
 import com.festivalmusic.festival.validation.SingleValidation;
-import com.festivalmusic.festival.validation.UserValidation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;

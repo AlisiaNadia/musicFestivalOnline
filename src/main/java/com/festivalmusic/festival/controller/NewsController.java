@@ -1,14 +1,11 @@
 package com.festivalmusic.festival.controller;
 
-import com.festivalmusic.festival.model.Stage;
-import com.festivalmusic.festival.model.TicketInfo;
 import com.festivalmusic.festival.service.StageService;
 import com.festivalmusic.festival.service.TicketInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 
 
 @Controller

@@ -85,8 +85,6 @@ public class BandController {
         List<String> userErrors = new ArrayList<String>(bandRegistration.getUsers().size());
         List<String> errorsBandMembers = new ArrayList<>(bandRegistration.getUsers().size());
 
-        System.out.println(bandRegistration.getUsers().size() + "sssssssssssss55555555555555555555555555555555555555sssssssssssss" + errorsBandMembers.size());
-
         ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
         Validator validator = factory.getValidator();
 

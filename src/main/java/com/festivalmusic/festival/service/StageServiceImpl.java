@@ -1,6 +1,5 @@
 package com.festivalmusic.festival.service;
 
-import com.festivalmusic.festival.model.Schedule;
 import com.festivalmusic.festival.model.Stage;
 import com.festivalmusic.festival.repository.StageRepository;
 import com.festivalmusic.festival.repository.TicketInfoRepository;
