@@ -1,22 +1,22 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
-<html lang="en">
+<html>
 <head>
-    <title>Festival</title>
+    <title>Add Band</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles/mystyle.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
 <body>
 
-<nav class="navbar navbar-expand-sm bg-light">
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
     <ul class="navbar-nav">
         <li class="nav-item">
             <a class="nav-link" href="festival-news">Festival news</a>
@@ -52,31 +52,26 @@
         </li>
     </ul>
 </nav>
-<div class="container">
-    <div>
-        <h1>Login</h1>
-    </div>
 
+<div class="login-container">
     <c:if test="${not empty param.logout}">
-        <div>
-            Logout was successful!
-        </div>
-
+        <h2>Logout was successful!</h2>
     </c:if>
-
-    <div class="error"> <c:if test="${not empty param.error}" >Invalid username and password.</c:if>
-    </div>
-
     <form:form action="perform_login" method="post">
         <form:errors path="*" cssClass="errorblock" element="div" />
-        <div><label>User name: <input type="text" name="username"></label></div>
-        <div><label>Password: <input type="password" name="password"></label></div>
-        <input type="submit" class="btn btn-lg btn-primary" role="button" value="Login"/>
+        <label>User name: </label>
+        <input type="text" name="username">
+
+        <label>Password: </label>
+        <input type="password" name="password">
+
+        <c:if test="${not empty param.error}">Invalid username and password.</c:if>
+
+        <input type="submit" value="Login"/>
     </form:form>
 
-    <div class="control-group">
-    </div>
 </div>
+
 </body>
 </html>
 

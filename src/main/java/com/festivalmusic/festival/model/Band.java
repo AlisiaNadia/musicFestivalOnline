@@ -1,7 +1,6 @@
 package com.festivalmusic.festival.model;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Entity
@@ -14,7 +13,6 @@ public class Band {
     private Long bandId;
 
     @Column(name = "band_name")
-    @NotNull
     private String bandName;
 
     @OneToMany(mappedBy = "bandId")

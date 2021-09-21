@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import javax.validation.Valid;
 import java.util.List;
 
 @Controller
@@ -32,12 +31,12 @@ public class TicketController {
     UserService userService;
 
     @GetMapping("buy-ticket")
-    public String getBuyTicket(@Valid @ModelAttribute("ticketInformation") TicketInfo ticketInfo) {
+    public String getBuyTicket( @ModelAttribute("ticketInformation") TicketInfo ticketInfo) {
         return "buy-ticket";
     }
 
     @PostMapping("buy-ticket")
-    public String addBuyTicket(@Valid @ModelAttribute("ticketInformation") TicketInfo ticketInfo,
+    public String addBuyTicket(@ModelAttribute("ticketInformation") TicketInfo ticketInfo,
                                BindingResult result, Authentication auth) {
         if(result.hasErrors()) {
             return "buy-ticket";

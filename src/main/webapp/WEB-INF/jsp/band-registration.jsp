@@ -14,7 +14,8 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
 <body>
-<nav class="navbar navbar-expand-sm bg-light">
+
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
     <ul class="navbar-nav">
         <li class="nav-item">
             <a class="nav-link" href="festival-news">Festival news</a>
@@ -50,135 +51,77 @@
         </li>
     </ul>
 </nav>
-<body>
-<form:form modelAttribute="bandRegistration">
-    <h1>Add band and band members</h1>
 
-      Band name:<form:input path="name"/>
+<div class="band-registration">
 
+    <form:form modelAttribute="bandRegistration">
+        <h3>Add band and band members</h3>
 
-       <c:forEach items="${bandRegistration.users}" var="user" varStatus="i">
-        <table class="member">
-            <tr>
-                <td>
-                    Last name:
-                </td>
-                <td>
-                    <form:input path="users[${i.index}].lastName" value="${user.lastName}"/>
-                    <form:errors path="users[${i.index}].lastName" />
-                </td>
-            </tr>
+        Band name:<form:input path="name"/>
+        <form:errors path="name" />
 
-            <tr>
-                <td>
-                    First name:
-                </td>
-                <td>
-                    <form:input path="users[${i.index}].firstName" value="${user.firstName}"/>
-                    <form:errors path="users[${i.index}].firstName" />
-                </td>
-            </tr>
+        <c:forEach items="${bandRegistration.users}" var="user" varStatus="i">
+            <div class="member">
 
-            <tr>
-                <td>
-                    Email:
-                </td>
-                <td>
-                    <form:input path="users[${i.index}].email" value="${user.email}"/>
-                    <form:errors path="users[${i.index}].email" />
-                </td>
-            </tr>
+                <label>Last name: </label>
+                <form:input path="users[${i.index}].lastName" value="${user.lastName}"/>
+                <form:errors path="users[${i.index}].lastName" />
 
-            <tr>
-                <td>
-                    Phone:
-                </td>
-                <td>
-                    <form:input path="users[${i.index}].phone" value="${user.phone}"/>
-                    <form:errors path="users[${i.index}].phone" />
-                </td>
-            </tr>
-
-            <tr>
-                <td>
-                   Address:
-                </td>
-                <td>
-                    <form:input path="users[${i.index}].address" value="${user.address}"/>
-                    <form:errors path="users[${i.index}].address" />
-                </td>
-            </tr>
-
-            <tr>
-                <td>
-                     Username:
-                </td>
-                <td>
-                    <form:input path="users[${i.index}].username" value="${user.username}"/>
-                    <form:errors path="users[${i.index}].username" />
-                    <c:if test="${not empty errors}">
-                        ${errors}
-                    </c:if>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    Password:
-                </td>
-                <td>
-                    <form:password  path="users[${i.index}].password" value="${user.password}"/><br/>
-                    <form:errors path="users[${i.index}].password" />
-                </td>
-            </tr>
+                <label>First name: </label>
+                <form:input path="users[${i.index}].firstName" value="${user.firstName}"/>
+                <form:errors path="users[${i.index}].firstName" />
 
 
-        </table>
+                <label>Email:</label>
+                <form:input path="users[${i.index}].email" value="${user.email}"/>
+                <form:errors path="users[${i.index}].email" />
+
+
+                <label>Phone:</label>
+                <form:input path="users[${i.index}].phone" value="${user.phone}"/>
+                <form:errors path="users[${i.index}].phone" />
+
+                <label>Address: </label>
+                <form:input path="users[${i.index}].address" value="${user.address}"/>
+                <form:errors path="users[${i.index}].address" />
+
+                <label>Username:</label>
+                <form:input path="users[${i.index}].username" value="${user.username}"/>
+                <form:errors path="users[${i.index}].username" />
+                <c:if test="${not empty usernameErrors[i.index]}">
+                    ${usernameErrors[i.index]}
+
+                </c:if>
+
+                <label>Password:</label>
+                <form:password  path="users[${i.index}].password" value="${user.password}"/><br/>
+                <form:errors path="users[${i.index}].password" />
+
+            </div>
+                </c:forEach>
+        <input type="submit" name="addMember" value="Add Member">
+
+        <h3>Add a Schedule for the band</h3>
+
+        <label>Date:</label>
+        <fmt:formatDate value="${schedule.scheduleDate}" var="dateString" pattern="dd/MM/yyyy" />
+        <form:input type="date" path="schedule.scheduleDate"/>
+        <form:errors path="schedule.scheduleDate" />
+
+        <label>Time:</label>
+        <form:input type="text" path="schedule.time"/>
+        <form:errors path="schedule.time" />
+
+        <label>Stage:</label>
+        <form:select path="schedule.stageId.stageId">
+            <c:forEach items="${bandStageList}" var="stage">
+                <option value="${stage.stageId}">${stage.stageId}  + ${stage.genre}</option>
             </c:forEach>
+        </form:select>
+        <form:errors path="schedule.stageId.stageId" />
 
-    </table>
-        <h1>Add a Schedule for the band</h1>
-        <table>
-            <tr>
-                <td>
-                    Date:
-                </td>
-                <td>
-                    <fmt:formatDate value="${schedule.scheduleDate}" var="dateString" pattern="dd/MM/yyyy" />
-                    <form:input type="date" path="schedule.scheduleDate"/>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    Time:
-                </td>
-                <td>
-
-                    <form:input type="text" path="schedule.time"/>
-
-                </td>
-            </tr>
-            <tr>
-                <td>Stage</td>
-                <td>
-                    <form:select path="schedule.stageId.stageId">
-                        <option value="top">Stage</option>
-                        <c:forEach items="${bandStageList}" var="stage">
-                            <option value="${stage.stageId}">${stage.stageId}  + ${stage.genre}</option>
-                        </c:forEach>
-                    </form:select>
-                </td>
-            </tr>
-        </table>
-
-    <tr>
-        <td>
-            <input type="submit" name="register" value="Add Registration">
-        </td>
-        <td>
-            <input type="submit" name="addMember" value="Add Member">
-        </td>
-    </tr>
-
-</form:form>
+        <input type="submit" name="register" value="Add Registration">
+    </form:form>
+</div>
 </body>
 </html>

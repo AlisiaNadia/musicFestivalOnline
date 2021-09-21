@@ -3,10 +3,8 @@ package com.festivalmusic.festival.controller;
 import com.festivalmusic.festival.model.*;
 import com.festivalmusic.festival.service.*;
 import com.festivalmusic.festival.validation.BandValidation;
-import com.festivalmusic.festival.validation.SingleValidation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -15,7 +13,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -44,7 +41,16 @@ public class BandController {
     private BandValidation bandValidation;
 
     @GetMapping("band-registration")
-    public String getBandRegistration(@ModelAttribute("bandRegistration") BandRegistration bandRegistration) {
+    public String getBandRegistration(@ModelAttribute("bandRegistration") BandRegistration bandRegistration, Model model) {
+
+        List<User> users = new ArrayList<>();
+
+        users.add(new User());
+        users.add(new User());
+
+        bandRegistration.setUsers(users);
+        model.addAttribute("bandRegistration",bandRegistration);
+
       return "band-registration";
     }
 

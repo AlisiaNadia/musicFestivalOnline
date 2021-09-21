@@ -1,10 +1,6 @@
 package com.festivalmusic.festival.model;
 
-
-import org.springframework.format.annotation.DateTimeFormat;
-
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.util.Date;
 import java.util.List;
 
@@ -18,11 +14,9 @@ public class Schedule {
     private Long scheduleId;
 
     @Column(name = "date")
-    @NotNull
     private Date scheduleDate;
 
     @Column(name = "time")
-    @NotNull
     private String time;
 
     @OneToMany(mappedBy = "scheduleId")
@@ -30,7 +24,6 @@ public class Schedule {
 
     @ManyToOne(fetch = FetchType.LAZY, targetEntity = Stage.class)
     @JoinColumn(name = "stage_id")
-    @NotNull
     private Stage stageId;
 
     public Schedule(Date scheduleDate, String time, Stage stageId) {
