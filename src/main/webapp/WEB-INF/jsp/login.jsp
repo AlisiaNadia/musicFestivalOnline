@@ -65,13 +65,14 @@
         <label>Password: </label>
         <input type="password" name="password">
 
-        <c:if test="${not empty param.error}">Invalid username and password.</c:if>
+        <c:if test="${not empty param.error}">
+            <p class="errors-warning">Invalid username or password.</p>
+        </c:if>
 
         <input type="submit" value="Login"/>
     </form:form>
 
 </div>
-
 </body>
 </html>
 

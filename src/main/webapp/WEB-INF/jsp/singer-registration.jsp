@@ -55,54 +55,57 @@
 <div class="singer-registration">
     <form:form modelAttribute="singerRegistration">
     <h3>Singer information</h3>
-        <label>Last name:</label>
-        <form:input path="user.lastName"/>
-        <form:errors path="user.lastName" />
+        <label>Last name:</label><br/>
+        <form:input path="user.lastName"/><br/>
+        <form:errors path="user.lastName"  cssClass="errors-warning"/><br/>
 
-        <label>First name:</label>
-        <form:input path="user.firstName"/>
-        <form:errors path="user.firstName" />
+        <label>First name:</label><br/>
+        <form:input path="user.firstName"/><br/>
+        <form:errors path="user.firstName"  cssClass="errors-warning"/><br/>
 
-        <label>Username:</label>
-        <form:input path="user.username" id="username"/>
-        <form:errors path="user.username" />
+        <label>Username:</label><br/>
+        <form:input path="user.username" id="username"/><br/>
+        <form:errors path="user.username"  cssClass="errors-warning"/><br/>
          <c:if test="${not empty usernameExists}">
-             ${usernameExists}
+             <p  class="errors-warning">${usernameExists}</p>
          </c:if>
 
-        <label>Email:</label>
-        <form:input path="user.email"/>
-        <form:errors path="user.email" />
+        <label>Email:</label><br/>
+        <form:input path="user.email"/><br/>
+        <form:errors path="user.email"  cssClass="errors-warning"/><br/>
+        <c:if test="${not empty emailError}" >
+            <p class="errors-warning">${emailError}</p>
+        </c:if>
 
-        <label>Phone number:</label>
-        <form:input path="user.phone"/>
-        <form:errors path="user.phone" />
+        <label>Phone number:</label><br/>
+        <form:input path="user.phone"/><br/>
+        <form:errors path="user.phone"  cssClass="errors-warning"/><br/>
 
-        <label>Address:</label>
-        <form:input path="user.address"/>
-        <form:errors path="user.address" />
+        <label>Address:</label><br/>
+        <form:input path="user.address"/><br/>
+        <form:errors path="user.address"  cssClass="errors-warning"/><br/>
 
-        <label>Password:</label>
-        <form:password path="user.password"/>
-        <form:errors path="user.password" /><br>
+        <label>Password:</label><br/>
+        <form:password path="user.password"/><br/>
+        <form:errors path="user.password"  cssClass="errors-warning"/><br>
 
         <h3>Add a Schedule for the singer</h3>
 
-        <label>Date:</label>
-        <form:input type="date" path="schedule.scheduleDate"/>
-        <form:errors path="schedule.scheduleDate" />
+        <label>Date:</label><br/>
+        <form:input type="date" path="schedule.scheduleDate"/><br/>
+        <form:errors path="schedule.scheduleDate"  cssClass="errors-warning"/><br/>
 
-        <label>Time:</label>
-        <form:input type="text" path="schedule.time"/>
-        <form:errors path="schedule.time" />
+        <label>Time:</label><br/>
+        <form:input type="text" path="schedule.time"/><br/>
+        <form:errors path="schedule.time"  cssClass="errors-warning"/><br/>
 
-        <label>Select the stage:</label>
-        <form:select path="schedule.stageId.stageId">
+        <label>Select the stage:</label><br/>
+        <form:select path="schedule.stageId.stageId"><br/>
                 <c:forEach items="${stageList}" var="stage">
                     <option value="${stage.stageId}">${stage.stageId} + ${stage.genre}</option>
                 </c:forEach>
         </form:select>
-        <form:errors path="schedule.stageId" />
+        <form:errors path="schedule.stageId"  cssClass="errors-warning"/><br/>
 
         <input type="submit" value="Add Singer">
     </form:form>

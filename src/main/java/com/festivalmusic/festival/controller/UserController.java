@@ -9,6 +9,12 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.ConstraintViolation;
+import javax.validation.Validation;
+import javax.validation.Validator;
+import javax.validation.ValidatorFactory;
+import java.util.Set;
+
 @Controller
 public class UserController {
 
@@ -25,6 +31,19 @@ public class UserController {
     public String addRegistration(@ModelAttribute("registration") User user, BindingResult result, Model model)  {
 
         new UserValidation().validate(user, result);
+
+        ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
+        Validator validator = factory.getValidator();
+
+       Set<ConstraintViolation<User>> errors = validator.validate(user);
+
+       if (!errors.isEmpty()) {
+           for (ConstraintViolation<User> userError:errors) {
+               String emailError = String.valueOf(userError.getPropertyPath()) + "Error";
+               model.addAttribute(emailError, userError.getMessage());
+           }
+           return "registration";
+        }
 
         User usernameCheck = userService.getUserByUsername(user.getUsername());
 

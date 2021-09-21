@@ -1,6 +1,7 @@
 package com.festivalmusic.festival.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
 import java.util.List;
 
 @Entity
@@ -19,6 +20,7 @@ public class User {
     private String firstName;
 
     @Column(name = "email")
+    @Email(message = "Email should be valid.")
     private String email;
 
     @Column(name = "phone")

@@ -18,9 +18,14 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import javax.validation.ConstraintViolation;
+import javax.validation.Validation;
+import javax.validation.Validator;
+import javax.validation.ValidatorFactory;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 @Controller
 public class SingerController {
@@ -51,6 +56,19 @@ public class SingerController {
         new SingleValidation().validate(singerRegistration, result);
 
         User usernameCheck = userService.getUserByUsername(singerRegistration.getUser().getUsername());
+
+        ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
+        Validator validator = factory.getValidator();
+
+        Set<ConstraintViolation<User>> errors = validator.validate(singerRegistration.getUser());
+
+        if (!errors.isEmpty()) {
+            for (ConstraintViolation<User> userError:errors) {
+                String emailError = String.valueOf(userError.getPropertyPath()) + "Error";
+                model.addAttribute(emailError, userError.getMessage());
+            }
+            return "singer-registration";
+        }
 
         if (usernameCheck != null) {
 

@@ -11,10 +11,12 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.ConstraintViolation;
+import javax.validation.Validation;
+import javax.validation.Validator;
+import javax.validation.ValidatorFactory;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @Controller
 public class BandController {
@@ -81,6 +83,12 @@ public class BandController {
         bandValidation.validate(bandRegistration, result);
 
         List<String> userErrors = new ArrayList<String>(bandRegistration.getUsers().size());
+        List<String> errorsBandMembers = new ArrayList<>(bandRegistration.getUsers().size());
+
+        System.out.println(bandRegistration.getUsers().size() + "sssssssssssss55555555555555555555555555555555555555sssssssssssss" + errorsBandMembers.size());
+
+        ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
+        Validator validator = factory.getValidator();
 
         if (bandRegistration.getUsers().size() > 0) {
 
@@ -89,10 +97,28 @@ public class BandController {
                 User usernameCheck = userService.getUserByUsername(bandRegistration.getUsers().get(i).getUsername());
 
                 if (usernameCheck != null) {
-                    userErrors.add(i,"This username is already in use");
+                    userErrors.add("This username is already in use");
+                } else {
+                    userErrors.add(null);
                 }
+
+                Set<ConstraintViolation<User>> errors = validator.validate(bandRegistration.getUsers().get(i));
+
+                if (!errors.isEmpty()) {
+                    for (ConstraintViolation<User> userError : errors) {
+                        errorsBandMembers.add(i,userError.getMessage());
+                    }
+                } else {
+                    errorsBandMembers.add(null);
+                }
+
             }
 
+        }
+
+        if (!errorsBandMembers.isEmpty()) {
+            model.addAttribute("errorsBandMembers", errorsBandMembers);
+            return "band-registration";
         }
 
         if (!userErrors.isEmpty()) {

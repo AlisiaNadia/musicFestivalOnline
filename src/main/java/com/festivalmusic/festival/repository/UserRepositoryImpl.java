@@ -26,7 +26,6 @@ public class UserRepositoryImpl implements UserRepository {
         User user = (User) entityManager.createQuery("select u from User u where u.username= '"+
                 username +"'").getResultList().stream().findFirst().orElse(null);
 
-        System.out.println(user + "*************************************************************");
         return user;
     }
 
