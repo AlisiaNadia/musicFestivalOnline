@@ -16,8 +16,10 @@ public class TicketInfoRepositoryImpl implements TicketInfoRepository {
     @Override
     public List<TicketInfo> getAll() {
 
+//        List<TicketInfo> tickets = entityManager.createQuery
+//                ("select t from TicketInfo t where t.amountLeft > 0").getResultList();
         List<TicketInfo> tickets = entityManager.createQuery
-                ("select t from TicketInfo t where t.amountLeft > 0").getResultList();
+                ("select t from TicketInfo t").getResultList();
 
        return tickets;
     }

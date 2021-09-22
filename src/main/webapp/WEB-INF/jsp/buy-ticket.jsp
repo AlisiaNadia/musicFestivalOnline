@@ -78,7 +78,8 @@
         <c:forEach items="${ticketInfoList}" var="ticket">
             <tr>
                 <td>
-                    <form:radiobutton path="ticketInfoId" value="${ticket.ticketInfoId}" name="${ticket.ticketInfoId}"/>
+                    <form:radiobutton path="ticketInfoId" value="${ticket.ticketInfoId}" name="${ticket.ticketInfoId}"
+                    disabled="${ticket.amountLeft == 0}"/>
                 </td>
                 <td>
                     <label>${ticket.stageId.stageId}</label>
@@ -93,7 +94,12 @@
                     <label>${ticket.type}</label>
                 </td>
                 <td>
-                    <label>${ticket.amountLeft}</label>
+                    <label>
+                        <c:choose>
+                            <c:when test="${ticket.amountLeft > 0}">${ticket.amountLeft}</c:when>
+                            <c:otherwise>Sold out</c:otherwise>
+                        </c:choose>
+                    </label>
                 </td>
             </tr>
 
