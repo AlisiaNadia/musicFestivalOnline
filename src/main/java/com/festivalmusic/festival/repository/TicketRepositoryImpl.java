@@ -18,10 +18,10 @@ public class TicketRepositoryImpl implements TicketRepository {
     @Override
     public Ticket getTicketId(Long ticketInfoId) {
 
-        List<Ticket> ids = entityManager.createQuery("select t from Ticket t " +
-                "where t.ticketInfoId = '"+ ticketInfoId +"' and t.ticketId not in( select a.ticketId from AudienceUser a)").getResultList();
-
-        return ids.get(0);
+        Ticket ticket = (Ticket) entityManager.createQuery("select t from Ticket t " +
+                "where t.ticketInfoId = '"+ ticketInfoId +"' and t.ticketId not in( select a.ticketId from AudienceUser a)").
+                getResultList().stream().findFirst().orElse(null);
+        return ticket;
     }
 
     @Override

@@ -7,6 +7,7 @@ import com.festivalmusic.festival.model.User;
 import java.util.List;
 
 public interface SingerService {
+
     List<Singer> getAll();
 
     Singer save(Singer singer);

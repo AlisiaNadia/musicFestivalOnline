@@ -70,6 +70,9 @@
             <th>
                 Ticket Type
             </th>
+            <th>
+               Tickets left
+            </th>
         </tr>
 
         <c:forEach items="${ticketInfoList}" var="ticket">
@@ -89,7 +92,9 @@
                 <td>
                     <label>${ticket.type}</label>
                 </td>
-
+                <td>
+                    <label>${ticket.amountLeft}</label>
+                </td>
             </tr>
 
         </c:forEach>

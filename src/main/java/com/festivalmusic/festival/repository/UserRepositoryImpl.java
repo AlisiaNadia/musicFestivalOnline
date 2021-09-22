@@ -37,18 +37,4 @@ public class UserRepositoryImpl implements UserRepository {
 
     }
 
-
-    @Override
-    public Boolean getUser(User user) {
-        String email = user.getEmail();
-        String password = user.getPassword();
-        User userExists =
-                (User) entityManager.createQuery
-                        ("select u from User u where u.email = '" + email + "' and u.password = '" + password + "' ");
-
-        if (userExists != null) {
-            return true;
-        }
-        return false;
-    }
 }
