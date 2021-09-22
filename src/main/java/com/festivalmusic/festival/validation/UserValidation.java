@@ -33,5 +33,14 @@ public class UserValidation implements Validator {
             errors.rejectValue("password", "password.size");
         }
 
+        if (!user.getPhone().matches("[0-9]+")) {
+           errors.rejectValue("phone", "phone.format");
+        }
+
+        if (user.getPhone().length() < 10) {
+            errors.rejectValue("phone", "phone.length");
+        }
     }
+
+
 }

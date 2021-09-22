@@ -55,36 +55,39 @@
 <div class="registration-container">
     <form:form modelAttribute="registration">
 
-        <label>Last name: </label>
-            <form:input path="lastName" />
-            <form:errors path="lastName" />
+        <label>Last name: </label><br/>
+            <form:input path="lastName"/><br/>
+            <form:errors path="lastName" cssClass="errors-warning"/><br/>
 
-        <label>Fist name: </label>
-            <form:input path="firstName"/>
-            <form:errors path="firstName" />
+        <label>Fist name: </label><br/>
+            <form:input path="firstName"/><br/>
+            <form:errors path="firstName" cssClass="errors-warning"/><br/>
 
-        <label>Username: </label>
-            <form:input path="username"/>
-            <form:errors path="username" />
-            <c:if test="${not empty usernameExists}">
-                ${usernameExists}
+        <label>Username: </label><br/>
+            <form:input path="username"/><br/>
+            <form:errors path="username" cssClass="errors-warning"/><br/>
+            <c:if test="${not empty usernameExists}" >
+                <p class="errors-warning">${usernameExists}</p>
             </c:if>
 
-        <label>Email: </label>
-            <form:input path="email"/>
-            <form:errors path="email" />
+        <label>Email: </label><br/>
+            <form:input path="email" /><br/>
+            <form:errors path="email" cssClass="errors-warning"/><br/>
+            <c:if test="${not empty emailError}" >
+                <p class="errors-warning">${emailError}</p>
+            </c:if>
 
-        <label>Address:</label>
-            <form:input path="address"/>
-            <form:errors path="address"/>
+        <label>Address:</label><br/>
+            <form:input path="address" /><br/>
+            <form:errors path="address" cssClass="errors-warning"/><br/>
 
-        <label>Phone number:</label>
-            <form:input path="phone"/>
-            <form:errors path="phone"/>
+        <label>Phone number:</label><br/>
+            <form:input path="phone" /><br/>
+            <form:errors path="phone" cssClass="errors-warning"/><br/>
 
-        <label>Password:</label>
-            <form:input path="password"/>
-            <form:errors path="password"/>
+        <label>Password:</label><br/>
+            <form:password path="password"/><br/>
+            <form:errors path="password" cssClass="errors-warning"/><br/>
 
         <input type="submit" value="Add Registration">
     </form:form>

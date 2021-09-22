@@ -37,14 +37,24 @@ public class BandValidation implements Validator {
                     ValidationUtils.rejectIfEmpty(errors, "users[" + i + "].phone", "phone");
                     ValidationUtils.rejectIfEmpty(errors, "users[" + i + "].address", "address");
                     ValidationUtils.rejectIfEmpty(errors, "users[" + i + "].password", "password");
+                    ValidationUtils.rejectIfEmpty(errors, "schedule.scheduleDate", "schedule.scheduleDate");
+                    ValidationUtils.rejectIfEmpty(errors, "schedule.time", "schedule.time");
+                    ValidationUtils.rejectIfEmpty(errors, "schedule.stageId", "schedule.stageId");
 
                     if (band.getUsers().get(i).getUsername().length() > 0 && (band.getUsers().get(i).getUsername().length() > 30 || band.getUsers().get(i).getUsername().length() < 5)) {
                         errors.rejectValue("users[" + i + "].username", "username.size");
                     }
 
-
                     if (band.getUsers().get(i).getUsername().length() > 0 && (band.getUsers().get(i).getUsername().length() > 30 || band.getUsers().get(i).getUsername().length() < 5)) {
                         errors.rejectValue("users[" + i + "].password", "password.size");
+                    }
+
+                    if (!band.getUsers().get(i).getPhone().matches("[0-9]+")) {
+                        errors.rejectValue("users[" + i + "].phone", "phone.format");
+                    }
+
+                    if (band.getUsers().get(i).getPhone().length() < 10) {
+                        errors.rejectValue("users[" + i + "].phone", "phone.length");
                     }
                 }
 

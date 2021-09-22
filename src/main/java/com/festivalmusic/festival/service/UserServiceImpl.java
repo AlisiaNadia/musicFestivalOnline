@@ -1,6 +1,5 @@
 package com.festivalmusic.festival.service;
 
-import com.festivalmusic.festival.model.Singer;
 import com.festivalmusic.festival.model.User;
 import com.festivalmusic.festival.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,12 +25,6 @@ public class UserServiceImpl implements UserService {
     public User save(User user){
         return userRepository.save(user);
     }
-
-
-//    @Override
-//    public Boolean getUser(User user) {
-//        return userRepository.getUser(user);
-//    }
 
     @Override
     public List<User> saveAll(List<User> users) {

@@ -57,45 +57,46 @@
     <form:form modelAttribute="bandRegistration">
         <h3>Add band and band members</h3>
 
-        Band name:<form:input path="name"/>
-        <form:errors path="name" />
+        Band name:<form:input path="name"/><br/>
+        <form:errors path="name" cssClass="errors-warning"/><br/>
 
         <c:forEach items="${bandRegistration.users}" var="user" varStatus="i">
             <div class="member">
 
-                <label>Last name: </label>
-                <form:input path="users[${i.index}].lastName" value="${user.lastName}"/>
-                <form:errors path="users[${i.index}].lastName" />
+                <label>Last name: </label><br/>
+                <form:input path="users[${i.index}].lastName" value="${user.lastName}"/><br/>
+                <form:errors path="users[${i.index}].lastName" cssClass="errors-warning"/><br/>
 
-                <label>First name: </label>
-                <form:input path="users[${i.index}].firstName" value="${user.firstName}"/>
-                <form:errors path="users[${i.index}].firstName" />
-
-
-                <label>Email:</label>
-                <form:input path="users[${i.index}].email" value="${user.email}"/>
-                <form:errors path="users[${i.index}].email" />
+                <label>First name: </label><br/>
+                <form:input path="users[${i.index}].firstName" value="${user.firstName}"/><br/>
+                <form:errors path="users[${i.index}].firstName" cssClass="errors-warning"/><br/>
 
 
-                <label>Phone:</label>
-                <form:input path="users[${i.index}].phone" value="${user.phone}"/>
-                <form:errors path="users[${i.index}].phone" />
-
-                <label>Address: </label>
-                <form:input path="users[${i.index}].address" value="${user.address}"/>
-                <form:errors path="users[${i.index}].address" />
-
-                <label>Username:</label>
-                <form:input path="users[${i.index}].username" value="${user.username}"/>
-                <form:errors path="users[${i.index}].username" />
-                <c:if test="${not empty usernameErrors[i.index]}">
-                    ${usernameErrors[i.index]}
-
+                <label>Email:</label><br/>
+                <form:input path="users[${i.index}].email" value="${user.email}"/><br/>
+                <form:errors path="users[${i.index}].email"  cssClass="errors-warning"/><br/>
+                <c:if test="${not empty errorsBandMembers[i.index]}">
+                    <p class="errors-warning">${errorsBandMembers[i.index]}</p>
                 </c:if>
 
-                <label>Password:</label>
+                <label>Phone:</label><br/>
+                <form:input path="users[${i.index}].phone" value="${user.phone}"/><br/>
+                <form:errors path="users[${i.index}].phone"  cssClass="errors-warning"/><br/>
+
+                <label>Address: </label><br/>
+                <form:input path="users[${i.index}].address" value="${user.address}"/><br/>
+                <form:errors path="users[${i.index}].address"  cssClass="errors-warning"/><br/>
+
+                <label>Username:</label><br/>
+                <form:input path="users[${i.index}].username" value="${user.username}"/><br/>
+                <form:errors path="users[${i.index}].username"  cssClass="errors-warning"/><br/>
+                <c:if test="${not empty usernameErrors[i.index]}">
+                    <p  class="errors-warning">${usernameErrors[i.index]}</p>
+                </c:if>
+
+                <label>Password:</label><br/>
                 <form:password  path="users[${i.index}].password" value="${user.password}"/><br/>
-                <form:errors path="users[${i.index}].password" />
+                <form:errors path="users[${i.index}].password"  cssClass="errors-warning"/><br/>
 
             </div>
                 </c:forEach>
@@ -103,22 +104,22 @@
 
         <h3>Add a Schedule for the band</h3>
 
-        <label>Date:</label>
+        <label>Date:</label><br/>
         <fmt:formatDate value="${schedule.scheduleDate}" var="dateString" pattern="dd/MM/yyyy" />
-        <form:input type="date" path="schedule.scheduleDate"/>
-        <form:errors path="schedule.scheduleDate" />
+        <form:input type="date" path="schedule.scheduleDate"/><br/>
+        <form:errors path="schedule.scheduleDate"  cssClass="errors-warning"/><br/>
 
-        <label>Time:</label>
-        <form:input type="text" path="schedule.time"/>
-        <form:errors path="schedule.time" />
+        <label>Time:</label><br/>
+        <form:input type="text" path="schedule.time"/><br/>
+        <form:errors path="schedule.time"  cssClass="errors-warning"/><br/>
 
-        <label>Stage:</label>
-        <form:select path="schedule.stageId.stageId">
+        <label>Stage:</label><br/>
+        <form:select path="schedule.stageId.stageId"><br/>
             <c:forEach items="${bandStageList}" var="stage">
                 <option value="${stage.stageId}">${stage.stageId}  + ${stage.genre}</option>
             </c:forEach>
         </form:select>
-        <form:errors path="schedule.stageId.stageId" />
+        <form:errors path="schedule.stageId.stageId"  cssClass="errors-warning"/><br/>
 
         <input type="submit" name="register" value="Add Registration">
     </form:form>

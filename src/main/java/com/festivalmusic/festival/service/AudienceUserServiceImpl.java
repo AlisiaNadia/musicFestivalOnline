@@ -2,7 +2,6 @@ package com.festivalmusic.festival.service;
 
 import com.festivalmusic.festival.model.AudienceUser;
 import com.festivalmusic.festival.model.Ticket;
-import com.festivalmusic.festival.model.TicketInfo;
 import com.festivalmusic.festival.model.User;
 import com.festivalmusic.festival.repository.AudienceUserRepository;
 import com.festivalmusic.festival.repository.TicketInfoRepository;

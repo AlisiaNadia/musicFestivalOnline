@@ -43,5 +43,13 @@ public class SingleValidation implements Validator {
             errors.rejectValue("schedule.scheduleDate", "wrong.scheduleDate");
         }
 
+        if (!singer.getUser().getPhone().matches("[0-9]+")) {
+            errors.rejectValue("user.phone", "phone.format");
+        }
+
+        if (singer.getUser().getPhone().length() < 10) {
+            errors.rejectValue("user.phone", "phone.length");
+        }
+
     }
 }
