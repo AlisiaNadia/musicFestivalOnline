@@ -18,6 +18,13 @@ public class Ticket {
     @OneToOne(mappedBy = "ticketId")
     private AudienceUser audienceUser;
 
+    public Ticket(TicketInfo ticketInfoId) {
+        this.ticketInfoId = ticketInfoId;
+    }
+
+    public Ticket() {
+
+    }
 
     public Long getTicketId() {
         return ticketId;

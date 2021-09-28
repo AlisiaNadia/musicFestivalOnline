@@ -72,8 +72,40 @@
 </nav>
 
 <div class="registration-container">
-    <form:form modelAttribute="registration">
+    <form:form modelAttribute="addStage">
 
+        <h3>Add a new stage</h3>
+
+        <label>Stage genre:</label>
+        <form:input path="stage.genre"/><br/>
+        <form:errors path="stage.genre" cssClass="errors-warning"/><br/>
+
+        <label>Stage capacity:</label>
+        <form:input path="stage.capacity"/><br/>
+        <form:errors path="stage.capacity" cssClass="errors-warning"/><br/>
+
+        <h3>Add a new ticket type</h3>
+        <c:forEach items="${addStage.ticketInfo}" var="ticket" varStatus="i">
+            <div class="member">
+
+                <label>Ticket Amount: </label><br/>
+                <form:input path="ticketInfo[${i.index}].amount" value="${ticket.amount}"/><br/>
+                <form:errors path="ticketInfo[${i.index}].amount" cssClass="errors-warning"/><br/>
+
+                <label>Ticket type: </label><br/>
+                <form:input path="ticketInfo[${i.index}].type" value="${ticket.type}"/><br/>
+                <form:errors path="ticketInfo[${i.index}].type" cssClass="errors-warning"/><br/>
+
+
+                <label>Price:</label><br/>
+                <form:input path="ticketInfo[${i.index}].price" value="${ticket.price}"/><br/>
+                <form:errors path="ticketInfo[${i.index}].type"  cssClass="errors-warning"/><br/>
+
+            </div>
+        </c:forEach>
+
+        <input type="submit" name="addNewTicket" value="Add new ticket type">
+        <input type="submit" name="register" value="Add Registration">
 
     </form:form>
 </div>

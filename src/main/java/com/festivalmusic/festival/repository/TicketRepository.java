@@ -12,4 +12,6 @@ public interface TicketRepository {
     Long updateTicketNumber(Long ticketInfoId);
 
     List<Ticket> getAllTicketsForUser(User userId);
+
+    Ticket save(Ticket ticket1);
 }

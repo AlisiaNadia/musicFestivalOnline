@@ -11,4 +11,6 @@ public interface StageService {
     Long getTheMostLikelyStageToBeSoldOut();
 
     String getTheMostPopularGenre();
+
+    Stage save(Stage stage);
 }

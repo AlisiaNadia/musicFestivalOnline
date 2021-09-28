@@ -53,4 +53,9 @@ public class StageServiceImpl implements StageService{
 
         return mostPopularGenre;
     }
+
+    @Override
+    public Stage save(Stage stage) {
+        return stageRepository.save(stage);
+    }
 }

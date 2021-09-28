@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
+import javax.transaction.Transactional;
 import java.util.*;
 
 @Repository
@@ -59,5 +60,13 @@ public class TicketInfoRepositoryImpl implements TicketInfoRepository {
         }
 
         return genres;
+    }
+
+    @Override
+    @Transactional
+    public TicketInfo save(TicketInfo ticket) {
+
+        entityManager.persist(ticket);
+        return ticket;
     }
 }

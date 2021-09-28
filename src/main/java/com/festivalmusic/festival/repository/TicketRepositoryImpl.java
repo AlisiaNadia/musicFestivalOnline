@@ -40,8 +40,14 @@ public class TicketRepositoryImpl implements TicketRepository {
         List<Ticket> tickets = entityManager.createQuery("select t from Ticket t where " +
                 "t.audienceUser.userId.userId = '" + userId.getUserId() + "'").getResultList();
 
-        System.out.println(tickets + "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
-
         return tickets;
+    }
+
+    @Override
+    @Transactional
+    public Ticket save(Ticket ticket1) {
+
+        entityManager.persist(ticket1);
+        return ticket1;
     }
 }
