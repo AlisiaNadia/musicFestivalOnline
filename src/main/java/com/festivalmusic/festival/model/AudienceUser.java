@@ -46,12 +46,4 @@ public class AudienceUser implements Serializable {
         this.ticketId = ticketId;
     }
 
-    @Override
-    public String toString() {
-        return "AudienceUser{" +
-                "audienceUserId=" + audienceUserId +
-                ", userId=" + userId +
-                ", ticketId=" + ticketId +
-                '}';
-    }
 }

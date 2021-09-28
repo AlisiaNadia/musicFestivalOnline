@@ -16,40 +16,59 @@
 <body>
 
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-    <ul class="navbar-nav">
-        <li class="nav-item">
-            <a class="nav-link" href="festival-news">Festival news</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="buy-ticket">Buy Ticket</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="singersList">See singers list</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="bandsList">See bands list</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="singer-registration">Add singer</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="band-registration">Add band</a>
-        </li>
-        <li class="nav-item">
-            <sec:authorize access="!isAuthenticated()">
-                <a class="nav-link" href="login">LogIn</a>
-            </sec:authorize>
-            <sec:authorize access="isAuthenticated()">
+    <sec:authorize access="hasAuthority('ROLES_ADMIN')">
+        <ul class="navbar-nav" >
+            <li class="nav-item">
+                <a class="nav-link" href="singer-registration">Add singer</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="band-registration">Add band</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="add-stage">Add stage</a>
+            </li>
+        </ul>
+    </sec:authorize>
+
+    <sec:authorize access="hasAuthority('ROLES_USER')">
+        <ul class="navbar-nav" >
+            <li class="nav-item">
+                <a class="nav-link" href="festival-news">Festival news</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="buy-ticket">Buy Ticket</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="your-tickets">Your tickets</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="singersList">See singers list</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="bandsList">See bands list</a>
+            </li>
+        </ul>
+    </sec:authorize>
+
+    <sec:authorize access="isAuthenticated()">
+        <ul class="navbar-nav ml-auto" >
+            <li class="nav-item">
                 <a class="nav-link" href="logout">Logout</a>
-            </sec:authorize>
-        </li>
-        <li class="nav-item">
-            <sec:authorize access="!isAuthenticated()">
+            </li>
+        </ul>
+    </sec:authorize>
+
+    <sec:authorize access="!isAuthenticated()">
+        <ul class="nav navbar-nav ml-auto" >
+            <li class="nav-item">
+                <a class="nav-link" href="login">LogIn</a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" href="registration">Register</a>
-            </sec:authorize>
-            </a>
-        </li>
-    </ul>
+            </li>
+        </ul>
+    </sec:authorize>
+
 </nav>
 
 <div class="singer-registration">
@@ -102,10 +121,10 @@
         <label>Select the stage:</label><br/>
         <form:select path="schedule.stageId.stageId"><br/>
                 <c:forEach items="${stageList}" var="stage">
-                    <option value="${stage.stageId}">${stage.stageId} + ${stage.genre}</option>
+                    <option value="${stage.stageId}">${stage.stageId} + ${stage.genre} </option>
                 </c:forEach>
         </form:select>
-        <form:errors path="schedule.stageId"  cssClass="errors-warning"/><br/>
+        <form:errors path="schedule.stageId"  cssClass="errors-warning"/> <br/>
 
         <input type="submit" value="Add Singer">
     </form:form>

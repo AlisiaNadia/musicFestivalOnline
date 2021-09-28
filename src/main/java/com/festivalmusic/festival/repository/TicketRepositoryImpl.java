@@ -1,6 +1,7 @@
 package com.festivalmusic.festival.repository;
 
 import com.festivalmusic.festival.model.Ticket;
+import com.festivalmusic.festival.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -31,5 +32,16 @@ public class TicketRepositoryImpl implements TicketRepository {
         querry.setParameter("id", id);
         querry.executeUpdate();
         return id;
+    }
+
+    @Override
+    public List<Ticket> getAllTicketsForUser(User userId) {
+
+        List<Ticket> tickets = entityManager.createQuery("select t from Ticket t where " +
+                "t.audienceUser.userId.userId = '" + userId.getUserId() + "'").getResultList();
+
+        System.out.println(tickets + "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+
+        return tickets;
     }
 }

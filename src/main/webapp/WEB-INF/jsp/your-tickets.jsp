@@ -1,10 +1,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
-    <title>Bands</title>
+    <title>Your tickets</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -16,7 +16,6 @@
 <body>
 
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-
     <sec:authorize access="hasAuthority('ROLES_ADMIN')">
         <ul class="navbar-nav" >
             <li class="nav-item">
@@ -71,30 +70,36 @@
     </sec:authorize>
 
 </nav>
-
+<body>
 <table class="list-container">
-    <tr>
-        <th>Band Name</th>
-        <th>Members</th>
-        <th>Scheduled time</th>
-        <th>Scheduled date</th>
-        <th>Stage</th>
-        <th>Stage genre</th>
-    </tr>
-    <c:forEach items="${bandsList}" var="band">
         <tr>
-            <td>${band.bandName}</td>
-            <td>
-                <c:forEach items="${band.members}" var="member">
-                    ${member.singerId.userId.lastName} ${member.singerId.userId.firstName} <br>
-                 </c:forEach>
-            </td>
-                <td>${band.members.get(0).singerId.scheduleId.time}</td>
-                <td><fmt:formatDate pattern="dd/MM/yyyy" value="${band.members.get(0).singerId.scheduleId.scheduleDate}"/></td>
-                <td>${band.members.get(0).singerId.scheduleId.stageId.stageId}</td>
-                <td>${band.members.get(0).singerId.scheduleId.stageId.genre}</td>
+            <th>
+                Stage
+            </th>
+            <th>
+                Genre
+            </th>
+
+            <th>
+                Ticket Type
+            </th>
+
         </tr>
-    </c:forEach>
+
+        <c:forEach items="${tickets}" var="ticket">
+            <tr>
+                <td>
+                    <label>${ticket.ticketInfoId.stageId.stageId}</label>
+                </td>
+                <td>
+                    <label>${ticket.ticketInfoId.stageId.genre}</label>
+                </td>
+                <td>
+                    <label>${ticket.ticketInfoId.type}</label>
+                </td>
+            </tr>
+        </c:forEach>
+
 </table>
 </body>
 </html>

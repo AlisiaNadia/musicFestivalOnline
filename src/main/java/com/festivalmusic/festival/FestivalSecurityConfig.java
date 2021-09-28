@@ -14,7 +14,7 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableWebSecurity
-public class ConferenceSecurityConfig extends WebSecurityConfigurerAdapter {
+public class FestivalSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(final HttpSecurity http) throws Exception {
@@ -25,6 +25,12 @@ public class ConferenceSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/registration*").permitAll()
                 .antMatchers("/styles/**").permitAll()
                 .antMatchers("/index*").permitAll()
+                .antMatchers("/band-registration").hasAuthority("ROLES_ADMIN")
+                .antMatchers("/singer-registration").hasAuthority("ROLES_ADMIN")
+                .antMatchers("/singersList").hasAuthority("ROLES_USER")
+                .antMatchers("/bandsList").hasAuthority("ROLES_USER")
+                .antMatchers("/buy-ticket").hasAuthority("ROLES_USER")
+                .antMatchers("/your-ticket").hasAuthority("ROLES_USER")
                 .anyRequest().authenticated()
 
                 .and()
