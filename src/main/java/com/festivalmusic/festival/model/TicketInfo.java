@@ -52,12 +52,20 @@ public class TicketInfo {
         this.ticketInfoId = ticketInfoId;
     }
 
-    public int getAmount() {
+    public Integer getAmount() {
         return amount;
     }
 
-    public void setAmount(int amount) {
+    public void setAmount(Integer amount) {
         this.amount = amount;
+    }
+
+    public Integer getAmountLeft() {
+        return amountLeft;
+    }
+
+    public void setAmountLeft(Integer amountLeft) {
+        this.amountLeft = amountLeft;
     }
 
     public String getType() {
@@ -92,13 +100,6 @@ public class TicketInfo {
         this.ticket = ticket;
     }
 
-    public int getAmountLeft() {
-        return amountLeft;
-    }
-
-    public void setAmountLeft(int amountLeft) {
-        this.amountLeft = amountLeft;
-    }
 
     @Override
     public String toString() {

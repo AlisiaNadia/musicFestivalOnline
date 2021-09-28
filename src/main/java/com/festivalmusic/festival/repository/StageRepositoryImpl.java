@@ -5,6 +5,7 @@ import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
 import java.util.List;
 @Repository
 public class StageRepositoryImpl implements StageRepository{
@@ -17,6 +18,15 @@ public class StageRepositoryImpl implements StageRepository{
         List<Stage> registrationList =
                 entityManager.createQuery("select r from Stage r").getResultList();
         return registrationList;
+    }
+
+    @Override
+    @Transactional
+    public Stage save(Stage stage) {
+
+        entityManager.persist(stage);
+
+        return stage;
     }
 
 }

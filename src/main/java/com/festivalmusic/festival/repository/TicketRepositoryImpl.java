@@ -1,6 +1,7 @@
 package com.festivalmusic.festival.repository;
 
 import com.festivalmusic.festival.model.Ticket;
+import com.festivalmusic.festival.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -18,10 +19,10 @@ public class TicketRepositoryImpl implements TicketRepository {
     @Override
     public Ticket getTicketId(Long ticketInfoId) {
 
-        List<Ticket> ids = entityManager.createQuery("select t from Ticket t " +
-                "where t.ticketInfoId = '"+ ticketInfoId +"' and t.ticketId not in( select a.ticketId from AudienceUser a)").getResultList();
-
-        return ids.get(0);
+        Ticket ticket = (Ticket) entityManager.createQuery("select t from Ticket t " +
+                "where t.ticketInfoId = '"+ ticketInfoId +"' and t.ticketId not in( select a.ticketId from AudienceUser a)").
+                getResultList().stream().findFirst().orElse(null);
+        return ticket;
     }
 
     @Override
@@ -31,5 +32,22 @@ public class TicketRepositoryImpl implements TicketRepository {
         querry.setParameter("id", id);
         querry.executeUpdate();
         return id;
+    }
+
+    @Override
+    public List<Ticket> getAllTicketsForUser(User userId) {
+
+        List<Ticket> tickets = entityManager.createQuery("select t from Ticket t where " +
+                "t.audienceUser.userId.userId = '" + userId.getUserId() + "'").getResultList();
+
+        return tickets;
+    }
+
+    @Override
+    @Transactional
+    public Ticket save(Ticket ticket1) {
+
+        entityManager.persist(ticket1);
+        return ticket1;
     }
 }

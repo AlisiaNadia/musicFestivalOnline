@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
+import javax.transaction.Transactional;
 import java.util.*;
 
 @Repository
@@ -16,8 +17,10 @@ public class TicketInfoRepositoryImpl implements TicketInfoRepository {
     @Override
     public List<TicketInfo> getAll() {
 
+//        List<TicketInfo> tickets = entityManager.createQuery
+//                ("select t from TicketInfo t where t.amountLeft > 0").getResultList();
         List<TicketInfo> tickets = entityManager.createQuery
-                ("select t from TicketInfo t where t.amountLeft > 0").getResultList();
+                ("select t from TicketInfo t").getResultList();
 
        return tickets;
     }
@@ -57,5 +60,13 @@ public class TicketInfoRepositoryImpl implements TicketInfoRepository {
         }
 
         return genres;
+    }
+
+    @Override
+    @Transactional
+    public TicketInfo save(TicketInfo ticket) {
+
+        entityManager.persist(ticket);
+        return ticket;
     }
 }

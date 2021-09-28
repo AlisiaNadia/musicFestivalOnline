@@ -13,4 +13,6 @@ public interface TicketInfoRepository {
     Map<Long, Integer> getTheMostLikelyStageToBeSoldOut();
 
     Map<String, Integer> getTheMostPopularGenre();
+
+    TicketInfo save(TicketInfo ticket);
 }
