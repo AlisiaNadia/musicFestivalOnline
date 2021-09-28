@@ -24,6 +24,9 @@ public class Stage {
     @OneToMany(mappedBy = "stageId")
     private List<TicketInfo> ticketInfo;
 
+    @OneToOne(mappedBy = "stageId")
+    private FestivalEdition festivalEdition;
+
     public Stage() {
 
     }

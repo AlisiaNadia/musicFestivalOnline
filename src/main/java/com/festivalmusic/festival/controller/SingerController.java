@@ -29,7 +29,6 @@ import java.util.Set;
 @Controller
 public class SingerController {
 
-
     @Autowired
     private SingerService singerService;
 

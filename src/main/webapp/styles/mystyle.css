@@ -34,25 +34,7 @@ input[type=submit] {
     height: 400px;
 }
 
-.registration-container {
-    border-radius: 5px;
-    position: relative;
-    top: 5%;
-    left: 25%;
-    width:1000px;
-    height: auto;
-}
-
-.singer-registration {
-    border-radius: 5px;
-    position: relative;
-    top: 5%;
-    left: 25%;
-    width:1000px;
-    height: auto;
-}
-
-.band-registration {
+.registration {
     border-radius: 5px;
     position: relative;
     top: 5%;

@@ -39,9 +39,6 @@ public class BandController {
     @Autowired
     private BandMembersService bandMembersService;
 
-    @Autowired
-    private BandValidation bandValidation;
-
     @GetMapping("band-registration")
     public String getBandRegistration(@ModelAttribute("bandRegistration") BandRegistration bandRegistration, Model model) {
 
@@ -80,7 +77,7 @@ public class BandController {
     public String addBandRegistration(@ModelAttribute("bandRegistration") BandRegistration bandRegistration ,
                                       BindingResult result, Model model) {
 
-        bandValidation.validate(bandRegistration, result);
+        new BandValidation().validate(bandRegistration, result);
 
         List<String> userErrors = new ArrayList<String>(bandRegistration.getUsers().size());
         List<String> errorsBandMembers = new ArrayList<>(bandRegistration.getUsers().size());

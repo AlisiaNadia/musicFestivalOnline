@@ -3,6 +3,7 @@ package com.festivalmusic.festival.controller;
 import com.festivalmusic.festival.model.*;
 import com.festivalmusic.festival.service.StageService;
 import com.festivalmusic.festival.service.TicketInfoService;
+import com.festivalmusic.festival.validation.StageValidation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -62,6 +63,12 @@ public class StageController {
     @PostMapping(value = "add-stage", params = "register")
     public String addStage(@ModelAttribute("addStage") AddStage addStage,
                            BindingResult result, Model model) {
+
+        new StageValidation().validate(addStage, result);
+
+        if (result.hasErrors()) {
+            return "add-stage";
+        }
 
         Stage stage = stageService.save(addStage.getStage());
 

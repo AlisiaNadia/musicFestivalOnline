@@ -27,6 +27,9 @@
             <li class="nav-item">
                 <a class="nav-link" href="add-stage">Add stage</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="add-festival">Add Festival</a>
+            </li>
         </ul>
     </sec:authorize>
 
@@ -71,7 +74,7 @@
 
 </nav>
 
-<div class="registration-container">
+<div class="registration">
     <form:form modelAttribute="addStage">
 
         <h3>Add a new stage</h3>

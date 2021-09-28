@@ -1,10 +1,18 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: asarb
+  Date: 9/28/2021
+  Time: 4:23 PM
+  To change this template use File | Settings | File Templates.
+--%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+
 <html>
 <head>
-    <title>Add Singer</title>
+    <title>Add a new festival</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -26,6 +34,9 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="add-stage">Add stage</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="add-festival">Add Festival</a>
             </li>
         </ul>
     </sec:authorize>
@@ -66,71 +77,30 @@
             <li class="nav-item">
                 <a class="nav-link" href="registration">Register</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="add-festival">Add Festival</a>
-            </li>
         </ul>
     </sec:authorize>
 
 </nav>
 
 <div class="registration">
-    <form:form modelAttribute="singerRegistration">
-    <h3>Singer information</h3>
-        <label>Last name:</label><br/>
-        <form:input path="user.lastName"/><br/>
-        <form:errors path="user.lastName"  cssClass="errors-warning"/><br/>
 
-        <label>First name:</label><br/>
-        <form:input path="user.firstName"/><br/>
-        <form:errors path="user.firstName"  cssClass="errors-warning"/><br/>
+    <form:form modelAttribute="festival">
 
-        <label>Username:</label><br/>
-        <form:input path="user.username" id="username"/><br/>
-        <form:errors path="user.username"  cssClass="errors-warning"/><br/>
-         <c:if test="${not empty usernameExists}">
-             <p  class="errors-warning">${usernameExists}</p>
-         </c:if>
+        <label>Edition name: </label><br/>
+        <form:input path="editionName"/><br/>
+        <form:errors path="editionName" cssClass="errors-warning"/><br/>
 
-        <label>Email:</label><br/>
-        <form:input path="user.email"/><br/>
-        <form:errors path="user.email"  cssClass="errors-warning"/><br/>
-        <c:if test="${not empty emailError}" >
-            <p class="errors-warning">${emailError}</p>
-        </c:if>
+        <label>Start date: </label><br/>
+        <form:input type="date" path="startDate"/><br/>
+        <form:errors path="startDate" cssClass="errors-warning"/><br/>
 
-        <label>Phone number:</label><br/>
-        <form:input path="user.phone"/><br/>
-        <form:errors path="user.phone"  cssClass="errors-warning"/><br/>
+        <label>End date: </label><br/>
+        <form:input type="date" path="endDate"/><br/>
+        <form:errors path="endDate" cssClass="errors-warning"/><br/>
 
-        <label>Address:</label><br/>
-        <form:input path="user.address"/><br/>
-        <form:errors path="user.address"  cssClass="errors-warning"/><br/>
-
-        <label>Password:</label><br/>
-        <form:password path="user.password"/><br/>
-        <form:errors path="user.password"  cssClass="errors-warning"/><br>
-
-        <h3>Add a Schedule for the singer</h3>
-
-        <label>Date:</label><br/>
-        <form:input type="date" path="schedule.scheduleDate"/><br/>
-        <form:errors path="schedule.scheduleDate"  cssClass="errors-warning"/><br/>
-
-        <label>Time:</label><br/>
-        <form:input type="text" path="schedule.time"/><br/>
-        <form:errors path="schedule.time"  cssClass="errors-warning"/><br/>
-
-        <label>Select the stage:</label><br/>
-        <form:select path="schedule.stageId.stageId"><br/>
-                <c:forEach items="${stageList}" var="stage">
-                    <option value="${stage.stageId}">${stage.stageId} + ${stage.genre} </option>
-                </c:forEach>
-        </form:select>
-        <form:errors path="schedule.stageId"  cssClass="errors-warning"/> <br/>
-
-        <input type="submit" value="Add Singer">
+        <input type="submit" value="Add Festival">
     </form:form>
+
 </div>
 </body>
 </html>
