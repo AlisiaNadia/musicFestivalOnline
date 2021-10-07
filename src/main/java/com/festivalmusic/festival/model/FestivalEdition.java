@@ -1,7 +1,6 @@
 package com.festivalmusic.festival.model;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @Table(name = "FESTIVAL_EDITION")
@@ -12,13 +11,23 @@ public class FestivalEdition {
     @Column(name = "festival_edition_id")
     private Long festivalEditionId;
 
-    @OneToOne(cascade = CascadeType.ALL, targetEntity = Festival.class)
+    @OneToOne(cascade = CascadeType.MERGE, targetEntity = Festival.class)
     @JoinColumn(name = "festival_id")
     private Festival festivalId;
 
-    @OneToOne(cascade = CascadeType.ALL, targetEntity = Stage.class)
+    @OneToOne(cascade = CascadeType.MERGE, targetEntity = Stage.class)
     @JoinColumn(name = "stage_id")
     private Stage stageId;
+
+    public FestivalEdition(Stage stage, Festival festival) {
+        this.stageId = stage;
+        this.festivalId = festival;
+    }
+
+    public FestivalEdition() {
+
+    }
+
 
     public Long getFestivalEditionId() {
         return festivalEditionId;
@@ -42,5 +51,14 @@ public class FestivalEdition {
 
     public void setStageId(Stage stageId) {
         this.stageId = stageId;
+    }
+
+    @Override
+    public String toString() {
+        return "FestivalEditionStages{" +
+                "festivalEditionId=" + festivalEditionId +
+                ", festivalId=" + festivalId +
+                ", stageId=" + stageId +
+                '}';
     }
 }

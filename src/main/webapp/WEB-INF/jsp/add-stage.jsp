@@ -77,6 +77,15 @@
 <div class="registration">
     <form:form modelAttribute="addStage">
 
+        <h3>Choose the festival</h3>
+
+        <form:select path="festival.festivalId"><br/>
+            <c:forEach items="${festivalList}" var="festivalId">
+                <option value="${festivalId.festivalId}">${festivalId.editionName}</option>
+            </c:forEach>
+        </form:select>
+        <form:errors path="festival.festivalId"  cssClass="errors-warning"/><br/>
+
         <h3>Add a new stage</h3>
 
         <label>Stage genre:</label>

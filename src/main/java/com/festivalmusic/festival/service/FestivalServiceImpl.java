@@ -5,6 +5,8 @@ import com.festivalmusic.festival.repository.FestivalRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class FestivalServiceImpl implements FestivalService {
 
@@ -14,5 +16,10 @@ public class FestivalServiceImpl implements FestivalService {
     @Override
     public Festival save(Festival festival) {
         return festivalRepository.save(festival);
+    }
+
+    @Override
+    public List<Festival> getAll() {
+        return festivalRepository.getAll();
     }
 }

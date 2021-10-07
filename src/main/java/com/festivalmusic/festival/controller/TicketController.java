@@ -31,6 +31,9 @@ public class TicketController {
     @Autowired
     TicketService ticketService;
 
+    @Autowired
+    FestivalEditionService festivalEditionService;
+
     @GetMapping("buy-ticket")
     public String getBuyTicket( @ModelAttribute("ticketInformation") TicketInfo ticketInfo) {
         return "buy-ticket";
@@ -42,6 +45,9 @@ public class TicketController {
         if (result.hasErrors()) {
             return "buy-ticket";
         }
+
+        List<AddStage> festivalEdition = festivalEditionService.getAllFutureFestivalEditions();
+
         User user  = userService.getUserByUsername(auth.getName());
         AudienceUser audienceUser = audienceUserService.save(ticketInfo.getTicketInfoId() ,user);
 

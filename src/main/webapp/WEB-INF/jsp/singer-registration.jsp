@@ -27,6 +27,9 @@
             <li class="nav-item">
                 <a class="nav-link" href="add-stage">Add stage</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="add-festival">Add Festival</a>
+            </li>
         </ul>
     </sec:authorize>
 
@@ -65,9 +68,6 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="registration">Register</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="add-festival">Add Festival</a>
             </li>
         </ul>
     </sec:authorize>

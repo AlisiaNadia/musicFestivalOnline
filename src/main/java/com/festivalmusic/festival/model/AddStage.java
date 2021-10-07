@@ -8,6 +8,8 @@ public class AddStage {
 
     private List<TicketInfo> ticketInfo;
 
+    private Festival festival;
+
     public Stage getStage() {
         return stage;
     }
@@ -22,6 +24,14 @@ public class AddStage {
 
     public void setTicketInfo(List<TicketInfo> ticketInfo) {
         this.ticketInfo = ticketInfo;
+    }
+
+    public Festival getFestival() {
+        return festival;
+    }
+
+    public void setFestival(Festival festival) {
+        this.festival = festival;
     }
 
     @Override

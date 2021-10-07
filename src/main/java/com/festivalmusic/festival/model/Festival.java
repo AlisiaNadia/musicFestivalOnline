@@ -48,6 +48,14 @@ public class Festival {
         this.endDate = endDate;
     }
 
+    public Long getFestivalId() {
+        return festivalId;
+    }
+
+    public void setFestivalId(Long festivalId) {
+        this.festivalId = festivalId;
+    }
+
     @Override
     public String toString() {
         return "Festival{" +

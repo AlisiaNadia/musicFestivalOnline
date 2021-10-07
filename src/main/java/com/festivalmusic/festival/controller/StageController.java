@@ -1,6 +1,8 @@
 package com.festivalmusic.festival.controller;
 
 import com.festivalmusic.festival.model.*;
+import com.festivalmusic.festival.service.FestivalEditionService;
+import com.festivalmusic.festival.service.FestivalService;
 import com.festivalmusic.festival.service.StageService;
 import com.festivalmusic.festival.service.TicketInfoService;
 import com.festivalmusic.festival.validation.StageValidation;
@@ -22,7 +24,13 @@ public class StageController {
     StageService stageService;
 
     @Autowired
+    FestivalService festivalService;
+
+    @Autowired
     TicketInfoService ticketInfoService;
+
+    @Autowired
+    FestivalEditionService festivalEditionService;
 
     @GetMapping("add-stage")
     public String getAddStage(@ModelAttribute("addStage") AddStage addStage, Model model) {
@@ -72,9 +80,18 @@ public class StageController {
 
         Stage stage = stageService.save(addStage.getStage());
 
+        FestivalEdition festivalEdition = festivalEditionService.save(new FestivalEdition(stage, addStage.getFestival()));
+
         List<TicketInfo> ticketInfoList = ticketInfoService.saveAll(stage, addStage.getTicketInfo());
 
         return "redirect:add-stage";
     }
+
+    @ModelAttribute("festivalList")
+    public List<Festival> getFestivalList() {
+        List<Festival> festivals = festivalService.getAll();
+        return festivals;
+    }
+
 
 }
